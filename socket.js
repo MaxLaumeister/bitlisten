@@ -1,7 +1,7 @@
 var satoshi = 100000000;
 
 var enableTransactions = false;
-var enableTrades = false;
+var enableTrades = true;
 
 function TransactionSocket() {
 
@@ -51,31 +51,40 @@ function TradeSocket() {
 }
 
 TradeSocket.init = function() {
-	if ('WebSocket' in window) {
-		console.log("Websocket Supported");
-		var connection = new WebSocket('ws://websocket.mtgox.com/mtgox');
+	var connection = io.connect('https://socketio.mtgox.com/mtgox');
 
-		connection.onopen = function() {
-			console.log('Connection open!');
-		}
+	connection.on('connect', function() {
+		console.log('Connection open!');
 
-		connection.onclose = function() {
-			console.log('Connection closed');
-		}
+		// Unsubscribe from depth and ticker
+		connection.emit('message', {
+			"op" : "unsubscribe",
+			"channel" : "24e67e0d-1cad-4cc0-9e7a-f8523ef460fe"
+		});
+		connection.emit('message', {
+			"op" : "unsubscribe",
+			"channel" : "d5f06780-30a8-4a48-a2f8-7ed181b4a13f"
+		});
+	});
 
-		connection.onerror = function(error) {
-			console.log('Error detected: ' + error);
-		}
+	connection.on('disconnect', function() {
+		console.log('Connection closed');
+	});
 
-		connection.onmessage = function(e) {
-			var message = JSON.parse(e.data);
-			if (message.trade) {
-				console.log(message);
-				console.log((message.trade.price * message.trade.amount) + " " + message.trade.price_currency);
-			}
+	connection.on('error', function() {
+		console.log('Error detected.');
+	});
+
+	connection.on('message', function(message) {
+		if (message.trade) {
+			console.log(message);
+			console.log((message.trade.price * message.trade.amount).toFixed(2) + " " + message.trade.price_currency);
 		}
-	} else {
-		//WebSockets are not supported. Try a fallback method like long-polling etc
-	}
+	});
+
+	/*connection.onmessage = function(e) {
+
+	 }*/
+
 }
 
