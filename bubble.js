@@ -7,8 +7,8 @@ function Bubble() {
 
 	this.div.style.position = "absolute";
 
-	this.x = Math.random() * 800;
-	this.y = 250;
+	this.x = Math.random() * pageWidth;
+	this.y = pageHeight;
 	this.width = this.height = 100;
 	this.div.innerHTML = '<span class="bubbleLabel" style="line-height: ' + this.height + 'px;">Hello</span>';
 	this.updateDiv();
@@ -20,14 +20,14 @@ function Bubble() {
 	var self = this;
 	this.intervalId = setInterval(function() {
 		self.update();
-	}, 100);
+	}, 40);
 }
 
 Bubble.prototype.update = function() {
 	this.y -= 1;
 	this.updateDiv();
 
-	if (this.y <= 100)
+	if (this.y < -this.height)
 		this.removeSelf();
 }
 

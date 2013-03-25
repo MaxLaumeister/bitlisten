@@ -1,8 +1,18 @@
-.bubbleLabel {
-	color: blue;
+#pageDiv {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: black;
+	background-image: url('images/background.jpg');
 }
 
-.bubbleDiv{
+.bubbleLabel {
+	color: white;
+}
+
+.bubbleDiv {
 	text-align: center;
 	/*background-color: red;*/
 }
