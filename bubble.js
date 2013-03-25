@@ -9,8 +9,7 @@ function Bubble() {
 
 	this.x = Math.random() * 800;
 	this.y = 250;
-	this.width = 100;
-	this.height = 100;
+	this.width = this.height = 100;
 	this.div.innerHTML = '<span class="bubbleLabel" style="line-height: ' + this.height + 'px;">Hello</span>';
 	this.updateDiv();
 
