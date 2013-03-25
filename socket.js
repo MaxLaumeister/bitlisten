@@ -77,14 +77,10 @@ TradeSocket.init = function() {
 
 	connection.on('message', function(message) {
 		if (message.trade) {
-			console.log(message);
-			console.log((message.trade.price * message.trade.amount).toFixed(2) + " " + message.trade.price_currency);
+			//console.log(message);
+			console.log(message.trade.amount_int / satoshi + " BTC"); // 0.57 BTC
+			console.log((message.trade.price * message.trade.amount_int / satoshi).toFixed(2) + " " + message.trade.price_currency); // 42.75 USD
 		}
 	});
-
-	/*connection.onmessage = function(e) {
-
-	 }*/
-
 }
 
