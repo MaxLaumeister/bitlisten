@@ -16,7 +16,7 @@ var onDocumentLoad = function() {
 	// Create a bubble spawner for testing
 	var spawnBubble = function() {
 		// Generate some test bubbles
-		if (Math.random() <= 0.02) {
+		if (Math.random() <= 0.01) {
 			// Try to simulate the transaction spread
 			var volume;
 			var order = Math.random();
@@ -33,8 +33,11 @@ var onDocumentLoad = function() {
 			var ball = new Bubble(volume);
 		}
 	}
-	//setInterval(spawnBubble, 30);
 	
 	Sound.init();
-	Socket.init();
+	
+	if (enableTransactions) TransactionSocket.init();
+	else setInterval(spawnBubble, 30);
+	
+	if (enableTrades) TradeSocket.init();
 }
