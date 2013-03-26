@@ -9,7 +9,7 @@ function TransactionSocket() {
 
 TransactionSocket.init = function() {
 	if ('WebSocket' in window) {
-		var connection = new WebSocket('ws://ws.blockchain.info:8335/inv');
+		var connection = new ReconnectingWebSocket('ws://ws.blockchain.info:8335/inv');
 
 		connection.onopen = function() {
 			console.log('Blockchain.info: Connection open!');
@@ -44,7 +44,8 @@ TransactionSocket.init = function() {
 			new Transaction(bitcoins);
 		}
 	} else {
-		//WebSockets are not supported. This is where we get to use a javascript library.
+		//WebSockets are not supported.
+		console.log("No native websocket support.");
 	}
 }
 function TradeSocket() {
@@ -56,6 +57,7 @@ TradeSocket.init = function() {
 	$.getScript("https://socketio.mtgox.com/socket.io/socket.io.js", function() {
 		// Make connection to Mtgox
 		var connection = io.connect('https://socketio.mtgox.com/mtgox');
+		console.log("Opening Mtgox connection.");
 
 		connection.on('connect', function() {
 			console.log('Mtgox: Connection open!');
