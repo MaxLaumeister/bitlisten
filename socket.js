@@ -26,7 +26,7 @@ TransactionSocket.init = function() {
 		}
 
 		connection.onerror = function(error) {
-			console.log('Blockchain.info: Error detected: ' + error);
+			console.log('Blockchain.info: Connection Error: ' + error);
 		}
 
 		connection.onmessage = function(e) {
@@ -80,7 +80,7 @@ TradeSocket.init = function() {
 		});
 
 		connection.on('error', function() {
-			console.log('Mtgox: Error detected.');
+			console.log('Mtgox: Connection error.');
 		});
 
 		connection.on('message', function(message) {
