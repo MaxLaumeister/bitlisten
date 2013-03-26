@@ -13,6 +13,7 @@ TransactionSocket.init = function() {
 
 		connection.onopen = function() {
 			console.log('Blockchain.info: Connection open!');
+			StatusBox.connected("blockchain");
 			var newTransactions = {
 				"op" : "unconfirmed_sub"
 			};
@@ -21,6 +22,7 @@ TransactionSocket.init = function() {
 
 		connection.onclose = function() {
 			console.log('Blockchain.info: Connection closed');
+			StatusBox.reconnecting("blockchain");
 		}
 
 		connection.onerror = function(error) {
@@ -42,7 +44,7 @@ TransactionSocket.init = function() {
 			new Transaction(bitcoins);
 		}
 	} else {
-		//WebSockets are not supported. Try a fallback method like long-polling etc
+		//WebSockets are not supported. This is where we get to use a javascript library.
 	}
 }
 function TradeSocket() {
@@ -57,6 +59,7 @@ TradeSocket.init = function() {
 
 		connection.on('connect', function() {
 			console.log('Mtgox: Connection open!');
+			StatusBox.connected("mtgox");
 
 			// Unsubscribe from depth and ticker
 			connection.emit('message', {
@@ -71,6 +74,7 @@ TradeSocket.init = function() {
 
 		connection.on('disconnect', function() {
 			console.log('Mtgox: Connection closed');
+			StatusBox.reconnecting("mtgox");
 		});
 
 		connection.on('error', function() {

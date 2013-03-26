@@ -39,7 +39,12 @@ var onDocumentLoad = function() {
 	
 	if (enableTransactions) TransactionSocket.init();
 	if (enableTrades) TradeSocket.init();
+	
+	// No outside connections - debug mode.
 	if (!enableTransactions && !enableTrades) {
 		setInterval(spawnBubble, 30);
+		StatusBox.init(true);
+	} else {
+		StatusBox.init();
 	}
 }
