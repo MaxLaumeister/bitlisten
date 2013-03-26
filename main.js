@@ -38,7 +38,8 @@ var onDocumentLoad = function() {
 	Sound.init();
 	
 	if (enableTransactions) TransactionSocket.init();
-	else setInterval(spawnBubble, 30);
-	
 	if (enableTrades) TradeSocket.init();
+	if (!enableTransactions && !enableTrades) {
+		setInterval(spawnBubble, 30);
+	}
 }

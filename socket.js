@@ -1,7 +1,7 @@
 var satoshi = 100000000;
 
-var enableTransactions = false;
-var enableTrades = false;
+var enableTransactions = true;
+var enableTrades = true;
 
 function TransactionSocket() {
 
@@ -38,7 +38,7 @@ TransactionSocket.init = function() {
 			}
 
 			var bitcoins = transacted / satoshi;
-			console.log("Transaction of size: " + bitcoins + " BTC");
+			console.log("Transaction: " + bitcoins + " BTC");
 
 			new Transaction(bitcoins);
 		}
@@ -77,9 +77,13 @@ TradeSocket.init = function() {
 
 	connection.on('message', function(message) {
 		if (message.trade) {
-			//console.log(message);
-			console.log(message.trade.amount_int / satoshi + " BTC"); // 0.57 BTC
-			console.log((message.trade.price * message.trade.amount_int / satoshi).toFixed(2) + " " + message.trade.price_currency); // 42.75 USD
+			console.log("Trade: " + message.trade.amount_int / satoshi + " BTC | " + (message.trade.price * message.trade.amount_int / satoshi) + " " + message.trade.price_currency); // 0.57 BTC | 42.75 USD
+			
+			var bitcoins = message.trade.amount_int / satoshi;
+			var currency = (message.trade.price * message.trade.amount_int / satoshi);
+			var currencyName = message.trade.price_currency;
+			
+			new Transaction(bitcoins, currency, currencyName);
 		}
 	});
 }
