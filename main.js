@@ -30,7 +30,7 @@ var onDocumentLoad = function() {
 				volume = Math.random() * 1000;
 			}
 			
-			var ball = new Bubble(volume);
+			var ball = new Transaction(volume);
 		}
 	}
 	

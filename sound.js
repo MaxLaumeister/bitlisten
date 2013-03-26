@@ -25,8 +25,6 @@ Sound.init = function() {
 }
 
 Sound.playRandomAtVolume = function(volume) {
-	// Get rid of volume for testing
-	volume = 100;
 	
 	var randomIndex = Math.floor(Math.random() * this.celesta.length);
 	this.celesta[randomIndex].stop().setVolume(volume).play();

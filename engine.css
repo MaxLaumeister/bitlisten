@@ -8,11 +8,13 @@
 	background-image: url('images/background.jpg');
 }
 
-.bubbleLabel {
+.floatableDiv span {
 	color: white;
 }
 
-.bubbleDiv {
+.floatableDiv {
 	text-align: center;
-	/*background-color: red;*/
+	position: absolute;
+	vertical-align: middle;
+	display: table-cell;
 }

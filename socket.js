@@ -1,7 +1,7 @@
 var satoshi = 100000000;
 
 var enableTransactions = false;
-var enableTrades = true;
+var enableTrades = false;
 
 function TransactionSocket() {
 
@@ -40,7 +40,7 @@ TransactionSocket.init = function() {
 			var bitcoins = transacted / satoshi;
 			console.log("Transaction of size: " + bitcoins + " BTC");
 
-			new Bubble(bitcoins);
+			new Transaction(bitcoins);
 		}
 	} else {
 		//WebSockets are not supported. Try a fallback method like long-polling etc
