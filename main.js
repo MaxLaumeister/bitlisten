@@ -36,6 +36,9 @@ var onDocumentLoad = function() {
 		}
 	}
 	
+	Sound.init();
+	StatusBox.init(debugmode);
+	
 	if (debugmode) {
 		setInterval(debugSpawner, 100);
 	} else {
@@ -43,7 +46,6 @@ var onDocumentLoad = function() {
 		TradeSocket.init();
 	}
 	
-	Sound.init();
-	StatusBox.init(debugmode);
+	new Block(228158, 270, "15482 BTC", "153 KB");
 }
 

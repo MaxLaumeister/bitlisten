@@ -1,4 +1,4 @@
-function Floatable(text) {
+function Floatable() {
 	this.velocity = {
 		x : 0,
 		y : -1
@@ -30,6 +30,8 @@ Floatable.prototype.update = function() {
 		this.velocity.x = 2;
 	if (this.velocity.x < -2)
 		this.velocity.x = -2;
+	if (this.x < 0) this.velocity.x += 0.02;
+	if (this.x > pageWidth - this.width) this.velocity.x -= 0.02;
 
 	this.updateDiv();
 
