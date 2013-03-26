@@ -1,8 +1,5 @@
 var satoshi = 100000000;
 
-var enableTransactions = true;
-var enableTrades = true;
-
 function TransactionSocket() {
 
 }

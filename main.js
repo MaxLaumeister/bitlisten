@@ -1,3 +1,7 @@
+// Set debugmode to true and transactions/trades will be 
+// randomly generated, and no outside connections will be made.
+var debugmode = true;
+
 var instanceId = 0;
 var pageDivId = "pageDiv";
 
@@ -10,13 +14,10 @@ var onDocumentLoad = function() {
 	pageWidth = window.innerWidth;
 	pageHeight = window.innerHeight;
 	
-	//var bubble = new Bubble();
-	//var bubble2 = new Bubble();
-	
 	// Create a bubble spawner for testing
-	var spawnBubble = function() {
+	var debugSpawner = function() {
 		// Generate some test bubbles
-		if (Math.random() <= 0.01) {
+		if (Math.random() <= 0.04) {
 			// Try to simulate the transaction spread
 			var volume;
 			var order = Math.random();
@@ -35,16 +36,14 @@ var onDocumentLoad = function() {
 		}
 	}
 	
-	Sound.init();
-	
-	if (enableTransactions) TransactionSocket.init();
-	if (enableTrades) TradeSocket.init();
-	
-	// No outside connections - debug mode.
-	if (!enableTransactions && !enableTrades) {
-		setInterval(spawnBubble, 30);
-		StatusBox.init(true);
+	if (debugmode) {
+		setInterval(debugSpawner, 100);
 	} else {
-		StatusBox.init();
+		TransactionSocket.init();
+		TradeSocket.init();
 	}
+	
+	Sound.init();
+	StatusBox.init(debugmode);
 }
+
