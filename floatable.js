@@ -62,7 +62,7 @@ Floatable.prototype.addImage = function(source, width, height) {
 }
 
 Floatable.prototype.addText = function(text) {
-	this.innerDiv.innerHTML = text;
+	this.innerDiv.innerHTML += text;
 }
 
 Floatable.prototype.initPosition = function() {

@@ -30,7 +30,8 @@ var onDocumentLoad = function() {
 				volume = Math.random() * 1000;
 			}
 			
-			var ball = new Transaction(volume);
+			if (Math.random() < 0.5) new Transaction(volume);
+			else new Transaction(volume, volume * 75, 'USD');
 		}
 	}
 	
