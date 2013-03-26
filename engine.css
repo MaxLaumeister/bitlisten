@@ -8,13 +8,17 @@
 	background-image: url('images/background.jpg');
 }
 
-.floatableDiv span {
+.innerDiv {
+	text-align: center;
 	color: white;
+	width: inherit;
+	position: absolute;
+	/*display: table-cell;
+	vertical-align: center;*/
 }
 
 .floatableDiv {
-	text-align: center;
+
 	position: absolute;
-	vertical-align: middle;
-	display: table-cell;
+	/*display: table;*/
 }

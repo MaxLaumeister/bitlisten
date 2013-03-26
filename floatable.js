@@ -7,6 +7,13 @@ function Floatable(text) {
 	this.div = document.createElement("div");
 	this.div.className = "floatableDiv";
 	document.getElementById(pageDivId).appendChild(this.div);
+		this.innerDiv = document.createElement("div");
+	this.div.appendChild(this.innerDiv);
+	this.innerDiv.className = "innerDiv";
+	
+	/*var innerdiv = document.createElement("div");
+	innerdiv.className = "innerDiv";
+	this.div.appendChild(innerdiv);*/
 
 	var self = this;
 	this.intervalId = setInterval(function() {
@@ -35,6 +42,7 @@ Floatable.prototype.updateDiv = function() {
 	this.div.style.left = this.x + "px";
 	this.div.style.width = this.width + "px";
 	this.div.style.height = this.height + "px";
+	this.innerDiv.style.top = (this.height/2  - this.innerDiv.offsetHeight/2) + 'px'; // Centers the text within the bubble
 }
 
 Floatable.prototype.removeSelf = function() {
@@ -51,6 +59,10 @@ Floatable.prototype.addImage = function(source, width, height) {
 	this.image.style.top = "0px";
 	this.image.style.left = "0px";
 	this.div.appendChild(this.image);
+}
+
+Floatable.prototype.addText = function(text) {
+	this.innerDiv.innerHTML = text;
 }
 
 Floatable.prototype.initPosition = function() {

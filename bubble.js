@@ -6,12 +6,15 @@ function Transaction(magnitude) {
 
 	this.magnitude = magnitude;
 	this.roundedMagnitude = magnitude.toFixed(2);
-
-	this.div.innerHTML = '<span>&#3647;' + this.roundedMagnitude + '<br />New Line</span>';
+	
+	//this.div.innerHTML = '<div style="top: ' + this.height/2 + 'px;">&#3647;' + this.roundedMagnitude + '</div>';
+	
 	this.addImage("images/bubble.png", this.width, this.height);
 
 	this.initPosition();
-
+	
+	this.addText('&#3647;' + this.roundedMagnitude + "<br />Line2");
+	
 	// Sound
 	var maxMagnitude = 1000;
 	var minMagnitude = 0;
@@ -24,4 +27,3 @@ function Transaction(magnitude) {
 }
 
 extend(Floatable, Transaction);
-
