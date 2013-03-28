@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 var globalMute = false;
 
@@ -44,7 +44,7 @@ var onDocumentLoad = function() {
 		TradeSocket.init();
 	}
 
-	setInterval(globalUpdate, 40);
+	globalUpdate();
 
 	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
 }
@@ -52,6 +52,7 @@ var globalUpdate = function() {
 	for (var i = 0; i < updateTargets.length; i++) {
 		updateTargets[i].update();
 	}
+	setTimeout(globalUpdate, 40);
 }
 
 window.onbeforeunload = function(e) {
