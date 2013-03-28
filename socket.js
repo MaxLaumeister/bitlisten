@@ -1,5 +1,7 @@
 var satoshi = 100000000;
 
+var lastBlockHeight = 0;
+
 function TransactionSocket() {
 
 }
@@ -7,6 +9,9 @@ function TransactionSocket() {
 TransactionSocket.init = function() {
 	if ('WebSocket' in window) {
 		var connection = new ReconnectingWebSocket('ws://ws.blockchain.info:8335/inv');
+		this.connection = connection;
+		
+		StatusBox.reconnecting("blockchain");
 
 		connection.onopen = function() {
 			console.log('Blockchain.info: Connection open!');
@@ -14,7 +19,11 @@ TransactionSocket.init = function() {
 			var newTransactions = {
 				"op" : "unconfirmed_sub"
 			};
+			var newBlocks = {
+				"op" : "blocks_sub"
+			};
 			connection.send(JSON.stringify(newTransactions));
+			connection.send(JSON.stringify(newBlocks));
 		}
 
 		connection.onclose = function() {
@@ -27,33 +36,59 @@ TransactionSocket.init = function() {
 		}
 
 		connection.onmessage = function(e) {
-			var transaction = JSON.parse(e.data).x;
+			var data = JSON.parse(e.data);
 
-			var transacted = 0;
+			// New Transaction
+			if (data.op == "utx") {
+				var transacted = 0;
 
-			for (var i = 0; i < transaction.out.length; i++) {
-				transacted += transaction.out[i].value;
+				for (var i = 0; i < data.x.out.length; i++) {
+					transacted += data.x.out[i].value;
+				}
+
+				var bitcoins = transacted / satoshi;
+				console.log("Transaction: " + bitcoins + " BTC");
+
+				new Transaction(bitcoins);
 			}
 
-			var bitcoins = transacted / satoshi;
-			console.log("Transaction: " + bitcoins + " BTC");
+			if (data.op == "block") {
+				var blockHeight = data.x.height;
+				var transactions = data.x.nTx;
+				var volumeSent = data.x.estimatedBTCSent;
+				var blockSize = data.x.size;
+				// Filter out the orphaned blocks.
+				if (blockHeight > lastBlockHeight) {
+					lastBlockHeight = blockHeight;
+					console.log("New Block");
+					new Block(blockHeight, transactions, volumeSent, blockSize);
+				}
+			}
 
-			new Transaction(bitcoins);
 		}
 	} else {
 		//WebSockets are not supported.
 		console.log("No native websocket support.");
 	}
 }
-function TradeSocket() {
 
+TransactionSocket.close = function() {
+	if (this.connection) this.connection.close();
+}
+
+function TradeSocket() {
+	
 }
 
 TradeSocket.init = function() {
 	// Load Mtgox socket.io library
+	var self = this;
+	StatusBox.reconnecting("mtgox");
+	
 	$.getScript("https://socketio.mtgox.com/socket.io/socket.io.js", function() {
 		// Make connection to Mtgox
 		var connection = io.connect('https://socketio.mtgox.com/mtgox');
+		self.connection = connection;
 		console.log("Opening Mtgox connection.");
 
 		connection.on('connect', function() {
@@ -96,3 +131,13 @@ TradeSocket.init = function() {
 	});
 
 }
+
+TradeSocket.close = function() {
+	if (this.connection) this.connection.disconnect();
+}
+
+// Close connections on page unload
+window.onbeforeunload = function(e) {
+	TransactionSocket.close();
+	TradeSocket.close();
+};

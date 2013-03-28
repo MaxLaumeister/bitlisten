@@ -1,14 +1,17 @@
 function Block(height, numTransactions, outputTotal, blockSize) {
 	Floatable.call(this);
-	
+
+	var outputBTC = Math.floor(outputTotal / satoshi) + " BTC";
+	var blockSizeKB = Math.floor(blockSize / 1024) + " KB";
+
 	this.width = this.height = 500;
 
 	this.addImage("images/block.png", this.width, this.height);
-	this.addText("Block #" + height +"<br />Number of Transactions: " + numTransactions + "<br />Transaction Volume: " + outputTotal + "<br />Block Size: " + blockSize);
+	this.addText("Block #" + height + "<br />Number of Transactions: " + numTransactions + "<br />Transaction Volume: " + outputBTC + "<br />Block Size: " + blockSizeKB);
 	this.initPosition();
 
 	// Sound
-	Sound.playRandomAtVolume(100);
+	Sound.playRandomSwell();
 }
 
 extend(Floatable, Block);

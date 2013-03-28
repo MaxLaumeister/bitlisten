@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be 
 // randomly generated, and no outside connections will be made.
-var debugmode = true;
+var DEBUG_MODE = false;
 
 var instanceId = 0;
 var pageDivId = "pageDiv";
@@ -37,15 +37,15 @@ var onDocumentLoad = function() {
 	}
 	
 	Sound.init();
-	StatusBox.init(debugmode);
+	StatusBox.init(DEBUG_MODE);
 	
-	if (debugmode) {
+	if (DEBUG_MODE) {
 		setInterval(debugSpawner, 100);
 	} else {
 		TransactionSocket.init();
 		TradeSocket.init();
 	}
 	
-	new Block(228158, 270, "15482 BTC", "153 KB");
+	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
 }
 
