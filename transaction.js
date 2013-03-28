@@ -1,4 +1,4 @@
-function Transaction(bitcoins, currency, currencyName) {
+function Transaction(bitcoins, currency, currencyName, highlight) {
 	Floatable.call(this);
 
 	this.area = bitcoins * 100 + 3000;
