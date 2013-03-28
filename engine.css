@@ -1,3 +1,15 @@
+* {
+	margin: 0;
+}
+
+img {
+	border-style: none;
+}
+
+a {
+	color: white;
+}
+
 #pageDiv {
 	position: fixed;
 	top: 0;
@@ -6,6 +18,7 @@
 	right: 0;
 	background-color: black;
 	background-image: url('images/background.jpg');
+	font-family: "Times New Roman", Times, serif;
 }
 
 .innerDiv {
@@ -13,20 +26,17 @@
 	color: white;
 	width: inherit;
 	position: absolute;
-	/*display: table-cell;
-	vertical-align: center;*/
 }
 
 .floatableDiv {
-
 	position: absolute;
-	/*display: table;*/
 }
 
 #connectionStatus {
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	z-index: 1;
 }
 
 #connectionInnerDiv {
@@ -36,4 +46,33 @@
 	left: 0;
 	margin: 1em;
 	width: 22em;
+}
+
+#header {
+	position: fixed;
+	z-index: 1;
+	color: white;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+}
+
+#headerInfo {
+	margin-top: 10px;
+}
+
+#header img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.serif {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	
+}
+
+.monospace {
+	font-family: "Courier New", Courier, monospace;
 }
