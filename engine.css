@@ -108,6 +108,7 @@ a {
     top:50%;
     margin:-2.75em 0 0 -13em;
     font-size: 2em;
+    display: none;
 }
 
 .serif {
