@@ -44,7 +44,7 @@ a {
 	color: white;
 	bottom: 0;
 	left: 0;
-	margin: 1em;
+	margin: 2em;
 	width: 22em;
 }
 
@@ -72,7 +72,7 @@ a {
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	margin: 1em;
+	margin: 2em;
 	width: 50px;
 	height: 46px;
 	background-image: url('images/sound.png');

@@ -6,6 +6,7 @@ var globalMute = false;
 
 var instanceId = 0;
 var pageDivId = "pageDiv";
+var TICK_SPEED = 50;
 
 var updateTargets = new Array();
 
@@ -18,6 +19,10 @@ $(document).ready(function() {
 	$("#clickSuppress").click(function () {
       $("#noInternetExplorer").slideUp(300);
     });
+    
+    // Preload images
+    (new Image()).src = "images/block.png";
+    (new Image()).src = "images/bubble.png";
 	
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
@@ -62,7 +67,7 @@ var globalUpdate = function() {
 	for (var i = 0; i < updateTargets.length; i++) {
 		updateTargets[i].update();
 	}
-	setTimeout(globalUpdate, 40);
+	setTimeout(globalUpdate, TICK_SPEED);
 }
 
 window.onbeforeunload = function(e) {
