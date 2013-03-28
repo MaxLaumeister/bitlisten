@@ -68,7 +68,8 @@ TransactionSocket.init = function() {
 		}
 	} else {
 		//WebSockets are not supported.
-		console.log("No native websocket support.");
+		console.log("No websocket support.");
+		StatusBox.nosupport("blockchain");
 	}
 }
 

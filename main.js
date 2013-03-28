@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 var globalMute = false;
 
@@ -12,8 +12,12 @@ var updateTargets = new Array();
 $(document).ready(function() {
 	// Because the user has javascript running:
 	$("#noJavascript").css("display", "none");
-	$("#blockchainStatus").html('Blockchain.info: <span style="color: yellow">Initializing.</span>');
-	$("#mtgoxStatus").html('Mt.Gox: <span style="color: yellow">Initializing.</span>');
+	$("#blockchainStatus").html('Blockchain.info: <span style="color: yellow;">Initializing.</span>');
+	$("#mtgoxStatus").html('Mt.Gox: <span style="color: yellow;">Initializing.</span>');
+	
+	$("#clickSuppress").click(function () {
+      $("#noInternetExplorer").slideUp(300);
+    });
 	
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
