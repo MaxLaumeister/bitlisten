@@ -23,7 +23,7 @@ Sound.init = function() {
 	
 	// String swells
 	this.swells = new Array();
-	for (var i = 1; i <= 5; i++) {
+	for (var i = 1; i <= 3; i++) {
 		newSound = new buzz.sound("sounds/swells/swell" + i + ".ogg");
 		this.swells.push(newSound);
 		newSound.load();
