@@ -10,7 +10,7 @@ StatusBox.init = function(debugmode) {
 	this.mtgox = $("#mtgoxStatus");
 	
 	if (debugmode) {
-		this.blockchain.html("Debug mode.");
+		this.blockchain.html("");
 		this.mtgox.html("Debug mode.")
 	}
 }

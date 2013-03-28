@@ -68,6 +68,21 @@ a {
 	margin-right: auto;
 }
 
+#volumeControl {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 1em;
+	width: 50px;
+	height: 46px;
+	background-image: url('images/sound.png');
+	background-position: 0 -46px;
+}
+
+#volumeControl:hover {
+	
+}
+
 .serif {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	
