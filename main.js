@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 var globalMute = false;
 
@@ -9,7 +9,12 @@ var pageDivId = "pageDiv";
 
 var updateTargets = new Array();
 
-var onDocumentLoad = function() {
+$(document).ready(function() {
+	// Because the user has javascript running:
+	$("#noJavascript").css("display", "none");
+	$("#blockchainStatus").html('Blockchain.info: <span style="color: yellow">Initializing.</span>');
+	$("#mtgoxStatus").html('Mt.Gox: <span style="color: yellow">Initializing.</span>');
+	
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
 		// Generate some test bubbles
@@ -47,7 +52,8 @@ var onDocumentLoad = function() {
 	globalUpdate();
 
 	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
-}
+});
+
 var globalUpdate = function() {
 	for (var i = 0; i < updateTargets.length; i++) {
 		updateTargets[i].update();
@@ -60,3 +66,4 @@ window.onbeforeunload = function(e) {
 	TransactionSocket.close();
 	TradeSocket.close();
 };
+

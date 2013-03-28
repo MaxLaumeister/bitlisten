@@ -77,10 +77,22 @@ a {
 	height: 46px;
 	background-image: url('images/sound.png');
 	background-position: 0 -46px;
+    cursor: pointer;
 }
 
-#volumeControl:hover {
-	
+#noJavascript {
+	color: white;
+	position: fixed;
+	height: 5em;
+	width: 25em;
+	line-height: 5em;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: solid white 1px;
+	left:50%;
+    top:50%;
+    margin:-2.5em 0 0 -12.5em;
+    font-size: 2em;
 }
 
 .serif {
