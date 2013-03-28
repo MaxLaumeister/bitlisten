@@ -7,7 +7,7 @@ var globalMute = false;
 var instanceId = 0;
 var pageDivId = "pageDiv";
 
-var nodes = new Array();
+var updateTargets = new Array();
 
 var onDocumentLoad = function() {
 	// Create a bubble spawner for testing
@@ -44,5 +44,18 @@ var onDocumentLoad = function() {
 		TradeSocket.init();
 	}
 
+	setInterval(globalUpdate, 40);
+
 	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
 }
+var globalUpdate = function() {
+	for (var i = 0; i < updateTargets.length; i++) {
+		updateTargets[i].update();
+	}
+}
+
+window.onbeforeunload = function(e) {
+	clearInterval(globalUpdate);
+	TransactionSocket.close();
+	TradeSocket.close();
+};

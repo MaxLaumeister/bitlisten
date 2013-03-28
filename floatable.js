@@ -11,15 +11,8 @@ function Floatable() {
 	this.div.appendChild(this.innerDiv);
 	this.innerDiv.className = "innerDiv";
 	
-	/*var innerdiv = document.createElement("div");
-	innerdiv.className = "innerDiv";
-	this.div.appendChild(innerdiv);*/
-
-	var self = this;
-	
-	this.intervalId = setInterval(function() {
-		self.update();
-	}, 40);
+	// Add this object to the update array
+	updateTargets.push(this);
 }
 
 Floatable.prototype.update = function() {
@@ -47,7 +40,8 @@ Floatable.prototype.updateDiv = function() {
 
 Floatable.prototype.removeSelf = function() {
 	document.getElementById(pageDivId).removeChild(this.div);
-	clearInterval(this.intervalId);
+	// Remove self from update array
+	updateTargets.splice(updateTargets.indexOf(this), 1);
 }
 
 Floatable.prototype.addImage = function(source, width, height) {

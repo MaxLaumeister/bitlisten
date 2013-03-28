@@ -135,9 +135,3 @@ TradeSocket.init = function() {
 TradeSocket.close = function() {
 	if (this.connection) this.connection.disconnect();
 }
-
-// Close connections on page unload
-window.onbeforeunload = function(e) {
-	TransactionSocket.close();
-	TradeSocket.close();
-};
