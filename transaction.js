@@ -4,7 +4,7 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	this.area = bitcoins * 100 + 3000;
 	this.width = this.height = Math.sqrt(this.area / Math.PI) * 2;
 
-	this.addImage("images/bubble.png", this.width, this.height);
+	this.addImage(bubbleImage, this.width, this.height);
 	if (!highlight) {
 		this.addText('&#3647;' + bitcoins.toFixed(2));
 	} else {
@@ -20,6 +20,7 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	var minVolume = 0.3;
 	var maxVolume = 0.5;
 	var volume = bitcoins / (maxBitcoins / (maxVolume - minVolume)) + minVolume;
+	if (volume > maxVolume) volume = maxVolume;
 	Sound.playRandomAtVolume(volume * 100);
 }
 

@@ -12,6 +12,12 @@ var TICK_SPEED = 50;
 
 var updateTargets = new Array();
 
+// Preload images
+    var bubbleImage = new Image();
+    bubbleImage.src = "images/bubble.png";
+    var blockImage = new Image();
+    blockImage.src = "images/block.png";
+
 $(document).ready(function() {
 	DONATION_ADDRESS = $("#donationAddress").html();
 	// Because the user has javascript running:
@@ -23,9 +29,7 @@ $(document).ready(function() {
       $("#noInternetExplorer").slideUp(300);
     });
     
-    // Preload images
-    (new Image()).src = "images/block.png";
-    (new Image()).src = "images/bubble.png";
+    
 	
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
@@ -51,10 +55,14 @@ $(document).ready(function() {
 		}
 	}
 
-	Sound.init();
+	
 	StatusBox.init(DEBUG_MODE);
+	
+	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
+});
 
-	if (DEBUG_MODE) {
+$(window).bind("load", function() {
+   if (DEBUG_MODE) {
 		setInterval(debugSpawner, 100);
 	} else {
 		TransactionSocket.init();
@@ -62,8 +70,8 @@ $(document).ready(function() {
 	}
 
 	globalUpdate();
-
-	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
+	
+	Sound.init();
 });
 
 var globalUpdate = function() {

@@ -6,7 +6,7 @@ function Block(height, numTransactions, outputTotal, blockSize) {
 
 	this.width = this.height = 500;
 
-	this.addImage("images/block.png", this.width, this.height);
+	this.addImage(blockImage, this.width, this.height);
 	this.addText("Block #" + height + "<br />Number of Transactions: " + numTransactions + "<br />Transaction Volume: " + outputBTC + "<br />Block Size: " + blockSizeKB);
 	this.initPosition();
 

@@ -46,10 +46,9 @@ Floatable.prototype.removeSelf = function() {
 	updateTargets.splice(updateTargets.indexOf(this), 1);
 }
 
-Floatable.prototype.addImage = function(source, width, height) {
+Floatable.prototype.addImage = function(image, width, height) {
 	this.canvas = document.createElement('canvas');
-	this.image = document.createElement('img');
-	this.image.src = source;
+	this.image = image;
 	this.canvas.height = height;
 	this.canvas.width = width;
 	this.canvas.style.position = "absolute";
