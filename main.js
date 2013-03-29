@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 var globalMute = false;
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
 		// Generate some test bubbles
-		if (Math.random() <= 0.04) {
+		if (Math.random() <= 0.3) {
 			// Try to simulate the transaction spread
 			var volume;
 			var order = Math.random();

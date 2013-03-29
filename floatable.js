@@ -3,14 +3,14 @@ function Floatable() {
 		x : 0,
 		y : -1
 	};
-	
+
 	this.div = document.createElement("div");
 	this.div.className = "floatableDiv";
 	document.getElementById(pageDivId).appendChild(this.div);
 	this.innerDiv = document.createElement("div");
 	this.div.appendChild(this.innerDiv);
 	this.innerDiv.className = "innerDiv";
-	
+
 	// Add this object to the update array
 	updateTargets.push(this);
 }
@@ -24,8 +24,10 @@ Floatable.prototype.update = function() {
 		this.velocity.x = 2;
 	if (this.velocity.x < -2)
 		this.velocity.x = -2;
-	if (this.x < 0) this.velocity.x += 0.02;
-	if (this.x > window.innerWidth - this.width) this.velocity.x -= 0.02;
+	if (this.x < 0)
+		this.velocity.x += 0.02;
+	if (this.x > window.innerWidth - this.width)
+		this.velocity.x -= 0.02;
 
 	this.updateDiv();
 
@@ -45,14 +47,18 @@ Floatable.prototype.removeSelf = function() {
 }
 
 Floatable.prototype.addImage = function(source, width, height) {
+	this.canvas = document.createElement('canvas');
 	this.image = document.createElement('img');
 	this.image.src = source;
-	this.image.height = height;
-	this.image.width = width;
-	this.image.style.position = "absolute";
-	this.image.style.top = "0px";
-	this.image.style.left = "0px";
-	this.div.appendChild(this.image);
+	this.canvas.height = height;
+	this.canvas.width = width;
+	this.canvas.style.position = "absolute";
+	this.canvas.style.top = "0px";
+	this.canvas.style.left = "0px";
+	var ctx = this.canvas.getContext("2d");
+	ctx.drawImage(this.image, 0, 0, width-1, height-1);
+
+	this.div.appendChild(this.canvas);
 }
 
 Floatable.prototype.addText = function(text) {
@@ -65,5 +71,6 @@ Floatable.prototype.initPosition = function() {
 	this.updateDiv();
 	this.div.style.width = this.width + "px";
 	this.div.style.height = this.height + "px";
-	this.innerDiv.style.top = (this.height / 2 - this.innerDiv.offsetHeight / 2) + 'px'; // Centers the text within the bubble
+	this.innerDiv.style.top = (this.height / 2 - this.innerDiv.offsetHeight / 2) + 'px';
+	// Centers the text within the bubble
 }
