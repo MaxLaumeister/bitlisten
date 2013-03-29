@@ -16,7 +16,7 @@ Sound.init = function() {
 	this.celesta = new Array();
 	for (var i = 1; i <= 22; i++) {
 		istring = zeroPad(i, 3);
-		newSound = new buzz.sound("sounds/celesta/c" + istring + ".ogg");
+		newSound = new buzz.sound("sounds/celesta/c" + istring, {formats: [ "ogg", "mp3"]});
 		this.celesta.push(newSound);
 		newSound.load();
 	}
@@ -24,7 +24,7 @@ Sound.init = function() {
 	// String swells, for blocks
 	this.swells = new Array();
 	for (var i = 1; i <= 3; i++) {
-		newSound = new buzz.sound("sounds/swells/swell" + i + ".ogg");
+		newSound = new buzz.sound("sounds/swells/swell" + i, {formats: [ "ogg", "mp3"]});
 		this.swells.push(newSound);
 		newSound.load();
 	}
