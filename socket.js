@@ -24,6 +24,7 @@ TransactionSocket.init = function() {
 			};
 			connection.send(JSON.stringify(newTransactions));
 			connection.send(JSON.stringify(newBlocks));
+			connection.send(JSON.stringify({"op":"ping_tx"})); // Display the latest transaction so the user sees something.
 		}
 
 		connection.onclose = function() {
