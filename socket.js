@@ -48,11 +48,21 @@ TransactionSocket.init = function() {
 
 				var bitcoins = transacted / satoshi;
 				console.log("Transaction: " + bitcoins + " BTC");
+				
+				var donation = false;
+				var outputs = data.x.out;
+				for (var i = 0; i < outputs.length; i++) {
+					console.log(outputs[i].addr);
+					if ((outputs[i].addr) == DONATION_ADDRESS) {
+						new Transaction(bitcoins, true);
+						return;
+					}
+				}
 
 				new Transaction(bitcoins);
 			}
 
-			if (data.op == "block") {
+			else if (data.op == "block") {
 				var blockHeight = data.x.height;
 				var transactions = data.x.nTx;
 				var volumeSent = data.x.estimatedBTCSent;
@@ -125,7 +135,7 @@ TradeSocket.init = function() {
 				var currency = (message.trade.price * message.trade.amount_int / satoshi);
 				var currencyName = message.trade.price_currency;
 
-				new Transaction(bitcoins, currency, currencyName);
+				new Transaction(bitcoins, false, currency, currencyName);
 			}
 		});
 

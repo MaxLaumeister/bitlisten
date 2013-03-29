@@ -1,6 +1,8 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
+
+var DONATION_ADDRESS;
 
 var globalMute = false;
 
@@ -11,6 +13,7 @@ var TICK_SPEED = 50;
 var updateTargets = new Array();
 
 $(document).ready(function() {
+	DONATION_ADDRESS = $("#donationAddress").html();
 	// Because the user has javascript running:
 	$("#noJavascript").css("display", "none");
 	$("#blockchainStatus").html('Blockchain.info: <span style="color: yellow;">Initializing.</span>');
@@ -27,7 +30,7 @@ $(document).ready(function() {
 	// Create a bubble spawner for testing
 	var debugSpawner = function() {
 		// Generate some test bubbles
-		if (Math.random() <= 0.3) {
+		if (Math.random() <= 0.1) {
 			// Try to simulate the transaction spread
 			var volume;
 			var order = Math.random();
@@ -42,9 +45,9 @@ $(document).ready(function() {
 			}
 
 			if (Math.random() < 0.5)
-				new Transaction(volume);
+				new Transaction(volume, false);
 			else
-				new Transaction(volume, volume * 75, 'USD');
+				new Transaction(volume, false, volume * 75, 'USD');
 		}
 	}
 
