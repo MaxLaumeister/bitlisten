@@ -52,7 +52,6 @@ TransactionSocket.init = function() {
 				var donation = false;
 				var outputs = data.x.out;
 				for (var i = 0; i < outputs.length; i++) {
-					console.log(outputs[i].addr);
 					if ((outputs[i].addr) == DONATION_ADDRESS) {
 						new Transaction(bitcoins, true);
 						return;

@@ -45,12 +45,18 @@ Sound.init = function() {
 Sound.playRandomAtVolume = function(volume) {
 	if (globalMute) return;
 	var randomIndex = Math.floor(Math.random() * this.celesta.length);
+	
+	var readyState = this.celesta[randomIndex].get("readyState");
+	if (readyState == 4)
 	this.celesta[randomIndex].stop().setVolume(volume).play();
 }
 
 Sound.playRandomSwell = function() {
 	if (globalMute) return;
 	var randomIndex = Math.floor(Math.random() * this.swells.length);
+	
+	var readyState = this.swells[randomIndex].get("readyState");
+	if (readyState == 4)
 	this.swells[randomIndex].stop().play();
 }
 
