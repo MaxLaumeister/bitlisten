@@ -16,7 +16,9 @@ Sound.init = function() {
 	this.celesta = new Array();
 	for (var i = 1; i <= 22; i++) {
 		istring = zeroPad(i, 3);
-		newSound = new buzz.sound("sounds/celesta/c" + istring, {formats: [ "ogg", "mp3"]});
+		newSound = new buzz.sound("sounds/celesta/c" + istring, {
+			formats : ["ogg", "mp3"]
+		});
 		this.celesta.push(newSound);
 		newSound.load();
 	}
@@ -24,7 +26,9 @@ Sound.init = function() {
 	// String swells, for blocks
 	this.swells = new Array();
 	for (var i = 1; i <= 3; i++) {
-		newSound = new buzz.sound("sounds/swells/swell" + i, {formats: [ "ogg", "mp3"]});
+		newSound = new buzz.sound("sounds/swells/swell" + i, {
+			formats : ["ogg", "mp3"]
+		});
 		this.swells.push(newSound);
 		newSound.load();
 	}
@@ -41,22 +45,31 @@ Sound.init = function() {
 		}
 	});
 }
+var currentNotes = 0;
+var noteTimeout = 200;
 
 Sound.playRandomAtVolume = function(volume) {
-	if (globalMute) return;
+	if (globalMute)
+		return;
 	var randomIndex = Math.floor(Math.random() * this.celesta.length);
-	
+
 	var readyState = this.celesta[randomIndex].get("readyState");
-	if (readyState == 4)
-	this.celesta[randomIndex].stop().setVolume(volume).play();
+	if (readyState == 4 && currentNotes < 5) {
+		this.celesta[randomIndex].stop().setVolume(volume).play();
+		currentNotes++;
+		setTimeout(function() {
+			currentNotes--;
+		}, noteTimeout);
+	}
 }
 
 Sound.playRandomSwell = function() {
-	if (globalMute) return;
+	if (globalMute)
+		return;
 	var randomIndex = Math.floor(Math.random() * this.swells.length);
-	
+
 	var readyState = this.swells[randomIndex].get("readyState");
 	if (readyState == 4)
-	this.swells[randomIndex].stop().play();
+		this.swells[randomIndex].stop().play();
 }
 
