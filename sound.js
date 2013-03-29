@@ -54,7 +54,7 @@ Sound.playRandomAtVolume = function(volume) {
 	var randomIndex = Math.floor(Math.random() * this.celesta.length);
 
 	var readyState = this.celesta[randomIndex].get("readyState");
-	if (readyState == 4 && currentNotes < 5) {
+	if (readyState >= 2 && currentNotes < 5) {
 		this.celesta[randomIndex].stop().setVolume(volume).play();
 		currentNotes++;
 		setTimeout(function() {

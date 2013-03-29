@@ -17,6 +17,21 @@
 		<script src="block.js" type="text/javascript"></script>
 		<script src="transaction.js" type="text/javascript"></script>
 		<script src="main.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-24440376-8']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
 	</head>
 	<body>
 		<div id="header" class="serif">
@@ -25,11 +40,15 @@
 				<p>
 					Realtime Bitcoin transaction and trade visualizer. <span class="fauxLink" onclick='$("#moreInfo").fadeIn();'>More Info</span>
 				</p>
-				<p>Works with Chrome and Firefox 19+. No sound in Safari.</p>
+				<p>
+					Works with Chrome and Firefox 19+. No sound in Safari.
+				</p>
 				<p>
 					Donations get highlighted: <span id="donationAddress" style="color: yellow;">14zoTKB29NdsJRvk4qP3vB9mQZ3dcV3eWk</span>
 				</p>
-				<p style="color: gray">By Maximillian Laumeister</p>
+				<p style="color: gray">
+					By Maximillian Laumeister
+				</p>
 			</div>
 		</div>
 		<div id="pageDiv"></div>
@@ -55,22 +74,38 @@
 				Try <a href="https://www.google.com/chrome/" target="_blank">Chrome</a>, <a href="http://www.getfirefox.com" target="_blank">Firefox</a> or Safari.
 			</p>
 			<br />
-			<p id="clickSuppress" style="font-size: 0.5em;"><span style="cursor: pointer;">
-				(Click Here to Suppress this warning.)
-			</span></p>
+			<p id="clickSuppress" style="font-size: 0.5em;">
+				<span style="cursor: pointer;"> (Click Here to Suppress this warning.) </span>
+			</p>
 		</div>
 		<div id="moreInfo">
 			<h1>Listen To Bitcoin</h1>
-			<p>Created by Maximillian Laumeister</p>
+			<p>
+				Created by Maximillian Laumeister
+			</p>
 			<br />
-			<p>Special Thanks:</p>
-			<p><a href="http://buzz.jaysalvat.com/" target="_blank">Jay Salvat</a> for his Sound Buzz library.</p>
-			<p><a href="https://github.com/joewalnes" target="_blank">Joe Walnes</a> for his <a href="https://github.com/joewalnes/reconnecting-websocket" target="_blank">Reconnecting Websocket</a>.</p>
-			<p><a href="http://jquery.com/" target="_blank">Jquery.com</a> for an amazing javascript library.</p>
-			<p><a href="http://blockchain.info/" target="_blank">Blockchain.info</a> for realtime transaction data.</p>
-			<p><a href="https://mtgox.com/" target="_blank">Mt.Gox</a> for realtime trade data.</p>
+			<p>
+				Special Thanks:
+			</p>
+			<p>
+				<a href="http://buzz.jaysalvat.com/" target="_blank">Jay Salvat</a> for his Sound Buzz library.
+			</p>
+			<p>
+				<a href="https://github.com/joewalnes" target="_blank">Joe Walnes</a> for his <a href="https://github.com/joewalnes/reconnecting-websocket" target="_blank">Reconnecting Websocket</a>.
+			</p>
+			<p>
+				<a href="http://jquery.com/" target="_blank">Jquery.com</a> for an amazing javascript library.
+			</p>
+			<p>
+				<a href="http://blockchain.info/" target="_blank">Blockchain.info</a> for realtime transaction data.
+			</p>
+			<p>
+				<a href="https://mtgox.com/" target="_blank">Mt.Gox</a> for realtime trade data.
+			</p>
 			<br />
-			<p class="fauxLink" style="font-size: 1.5em; color: yellow; text-decoration:underline;" onclick='$("#moreInfo").fadeOut();'>Close</p>
+			<p class="fauxLink" style="font-size: 1.5em; color: yellow; text-decoration:underline;" onclick='$("#moreInfo").fadeOut();'>
+				Close
+			</p>
 		</div>
 	</body>
 </html>
