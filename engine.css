@@ -81,14 +81,14 @@ a {
 	position: fixed;
 	color: white;
 	width: 400px;
-	height: 300px;
+	height: 250px;
 	border: solid white 1px;
 	background-color: rgba(0, 0, 0, 0.9);
 	left: 50%;
-	top: 50%;
-	margin: -250px 0 0 -250px;
+	top: 200px;
+	margin: 0 0 0 -250px;
 	padding: 50px;
-	padding-top: 100px;
+	padding-top: 20px;
 	text-align: center;
 }
 
