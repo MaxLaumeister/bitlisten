@@ -23,12 +23,13 @@
 			<img src="images/logo.png" alt="Listen To Bitcoin">
 			<div id="headerInfo">
 				<p>
-					Realtime Bitcoin transaction and trade visualizer. <a href="">More Info</a>
+					Realtime Bitcoin transaction and trade visualizer. <span class="fauxLink" onclick='$("#moreInfo").fadeIn();'>More Info</span>
 				</p>
 				<p>Works with Chrome and Firefox 19+. No sound in Safari.</p>
 				<p>
 					Donations get highlighted: <span id="donationAddress" style="color: yellow;">14zoTKB29NdsJRvk4qP3vB9mQZ3dcV3eWk</span>
 				</p>
+				<p style="color: gray">By Maximillian Laumeister</p>
 			</div>
 		</div>
 		<div id="pageDiv"></div>
@@ -57,6 +58,20 @@
 			<p id="clickSuppress" style="font-size: 0.5em;"><span style="cursor: pointer;">
 				(Click Here to Suppress.)
 			</span></p>
+		</div>
+		<div id="moreInfo">
+			<h1>Listen To Bitcoin</h1>
+			<p>Created by Maximillian Laumeister</p>
+			<br />
+			<p>Special Thanks:</p>
+			<p><a href="http://buzz.jaysalvat.com/" target="_blank">Jay Salvat</a> for his Sound Buzz library.</p>
+			<p><a href="https://github.com/joewalnes" target="_blank">Joe Walnes</a> for his <a href="https://github.com/joewalnes/reconnecting-websocket" target="_blank">Reconnecting Websocket</a>.</p>
+			<p><a href="http://jquery.com/" target="_blank">Jquery.com</a> for an amazing javascript library.</p>
+			<p><a href="http://blockchain.info/" target="_blank">Blockchain.info</a> for realtime transaction data.</p>
+			<p><a href="https://mtgox.com/" target="_blank">Mt.Gox</a> for realtime trade data.</p>
+			<br />
+			<br />
+			<p class="fauxLink" style="font-size: 1.5em; color: yellow; text-decoration:underline;" onclick='$("#moreInfo").fadeOut();'>Close</p>
 		</div>
 	</body>
 </html>

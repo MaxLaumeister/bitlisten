@@ -1,7 +1,7 @@
 * {
 	margin: 0;
 	font-smooth: never;
-	-webkit-font-smoothing : none;
+	-webkit-font-smoothing: none;
 }
 
 img {
@@ -32,6 +32,11 @@ a {
 
 .floatableDiv {
 	position: absolute;
+}
+
+.fauxLink {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 #connectionStatus {
@@ -71,6 +76,22 @@ a {
 	margin-right: auto;
 }
 
+#moreInfo {
+	display: none;
+	position: fixed;
+	color: white;
+	width: 400px;
+	height: 300px;
+	border: solid white 1px;
+	background-color: rgba(0, 0, 0, 0.9);
+	left: 50%;
+	top: 50%;
+	margin: -250px 0 0 -250px;
+	padding: 50px;
+	padding-top: 100px;
+	text-align: center;
+}
+
 #volumeControl {
 	position: fixed;
 	bottom: 0;
@@ -80,7 +101,7 @@ a {
 	height: 46px;
 	background-image: url('images/sound.png');
 	background-position: 0 -46px;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #noJavascript {
@@ -89,13 +110,13 @@ a {
 	height: 5em;
 	width: 25em;
 	line-height: 5em;
-    text-align: center;
+	text-align: center;
 	background-color: rgba(0, 0, 0, 0.5);
 	border: solid white 1px;
-	left:50%;
-    top:50%;
-    margin:-2.5em 0 0 -12.5em;
-    font-size: 2em;
+	left: 50%;
+	top: 50%;
+	margin: -2.5em 0 0 -12.5em;
+	font-size: 2em;
 }
 
 #noInternetExplorer {
@@ -104,19 +125,18 @@ a {
 	position: fixed;
 	height: 5em;
 	width: 25em;
-    text-align: center;
+	text-align: center;
 	background-color: rgba(0, 0, 0, 0.5);
 	border: solid white 1px;
-	left:50%;
-    top:50%;
-    margin:-2.75em 0 0 -13em;
-    font-size: 2em;
-    display: none;
+	left: 50%;
+	top: 50%;
+	margin: -2.75em 0 0 -13em;
+	font-size: 2em;
+	display: none;
 }
 
 .serif {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	
 }
 
 .monospace {
