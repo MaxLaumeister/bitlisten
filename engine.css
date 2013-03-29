@@ -57,6 +57,8 @@ a {
 
 #header {
 	position: fixed;
+	top:0;
+	left:0;
 	z-index: 1;
 	color: white;
 	width: 100%;
