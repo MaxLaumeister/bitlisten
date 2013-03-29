@@ -69,7 +69,7 @@ Sound.playRandomSwell = function() {
 	var randomIndex = Math.floor(Math.random() * this.swells.length);
 
 	var readyState = this.swells[randomIndex].get("readyState");
-	if (readyState == 4)
+	if (readyState >= 2)
 		this.swells[randomIndex].stop().play();
 }
 
