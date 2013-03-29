@@ -1,5 +1,7 @@
 * {
 	margin: 0;
+	font-smooth: never;
+	-webkit-font-smoothing : none;
 }
 
 img {
@@ -60,6 +62,7 @@ a {
 
 #headerInfo {
 	margin-top: 10px;
+	line-height: 20px;
 }
 
 #header img {
