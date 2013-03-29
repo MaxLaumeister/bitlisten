@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 var DONATION_ADDRESS;
 
@@ -36,7 +36,7 @@ $(document).ready(function() {
 	// Create a bubble spawner for testing
 	debugSpawner = function() {
 		// Generate some test bubbles
-		if (Math.random() <= 0.01) {
+		if (Math.random() <= 0.1) {
 			// Try to simulate the transaction spread
 			var volume;
 			var order = Math.random();
@@ -65,7 +65,7 @@ $(document).ready(function() {
 
 $(window).bind("load", function() {
    if (DEBUG_MODE) {
-		setInterval(debugSpawner, 10);
+		setInterval(debugSpawner, 100);
 	} else {
 		TransactionSocket.init();
 		TradeSocket.init();
