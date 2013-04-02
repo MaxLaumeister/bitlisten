@@ -2,6 +2,9 @@
 	margin: 0;
 	font-smooth: never;
 	-webkit-font-smoothing: none;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 img {
