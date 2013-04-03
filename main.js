@@ -24,8 +24,10 @@ $(document).ready(function() {
 	DONATION_ADDRESS = $("#donationAddress").html();
 	// Because the user has javascript running:
 	$("#noJavascript").css("display", "none");
-	$("#blockchainStatus").html('Blockchain.info: <span style="color: yellow;">Initializing.</span>');
-	$("#mtgoxStatus").html('Mt.Gox: <span style="color: yellow;">Initializing.</span>');
+	
+	StatusBox.init(DEBUG_MODE);
+	StatusBox.closed("blockchain");
+	StatusBox.closed("mtgox");
 	
 	$("#clickSuppress").click(function () {
       $("#noInternetExplorer").slideUp(300);
@@ -56,9 +58,6 @@ $(document).ready(function() {
 				new Transaction(volume, false, volume * 75, 'USD');
 		}
 	}
-
-	
-	StatusBox.init(DEBUG_MODE);
 	
 	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
 });
@@ -67,8 +66,8 @@ $(window).bind("load", function() {
    if (DEBUG_MODE) {
 		setInterval(debugSpawner, 100);
 	} else {
-		TransactionSocket.init();
-		TradeSocket.init();
+		if ($("#blockchainCheckBox").prop("checked")) TransactionSocket.init();
+		if ($("#mtgoxCheckBox").prop("checked")) TradeSocket.init();
 	}
 
 	globalUpdate();

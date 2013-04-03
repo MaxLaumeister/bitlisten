@@ -7,6 +7,9 @@ function TransactionSocket() {
 }
 
 TransactionSocket.init = function() {
+	// Terminate previous connection, if any
+	if (this.connection) this.connection.close();
+	
 	if ('WebSocket' in window) {
 		var connection = new ReconnectingWebSocket('ws://ws.blockchain.info:8335/inv');
 		this.connection = connection;
@@ -29,7 +32,8 @@ TransactionSocket.init = function() {
 
 		connection.onclose = function() {
 			console.log('Blockchain.info: Connection closed');
-			StatusBox.reconnecting("blockchain");
+			if ($("#blockchainCheckBox").prop("checked")) StatusBox.reconnecting("blockchain");
+			else StatusBox.closed("blockchain");
 		}
 
 		connection.onerror = function(error) {
@@ -86,6 +90,7 @@ TransactionSocket.init = function() {
 
 TransactionSocket.close = function() {
 	if (this.connection) this.connection.close();
+	StatusBox.closed("blockchain");
 }
 
 function TradeSocket() {
@@ -93,6 +98,9 @@ function TradeSocket() {
 }
 
 TradeSocket.init = function() {
+	// Terminate previous connection, if any
+	if (this.connection) this.connection.disconnect();
+	
 	// Load Mtgox socket.io library
 	var self = this;
 	StatusBox.reconnecting("mtgox");
@@ -120,7 +128,8 @@ TradeSocket.init = function() {
 
 		connection.on('disconnect', function() {
 			console.log('Mtgox: Connection closed');
-			StatusBox.reconnecting("mtgox");
+			if ($("#mtgoxCheckBox").prop("checked")) StatusBox.reconnecting("mtgox");
+			else StatusBox.closed("mtgox");
 		});
 
 		connection.on('error', function() {
@@ -146,4 +155,7 @@ TradeSocket.init = function() {
 
 TradeSocket.close = function() {
 	if (this.connection) this.connection.disconnect();
+	StatusBox.closed("mtgox");
 }
+
+
