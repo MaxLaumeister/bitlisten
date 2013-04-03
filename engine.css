@@ -89,22 +89,25 @@ a {
 	margin-right: auto;
 }
 
-#volumeControl {
+#volumeWrapper {
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	margin: 2em;
-	width: 50px;
-	height: 46px;
+}
+
+#volumeControl {
 	background-image: url('images/sound.png');
 	background-position: 0 -46px;
 	cursor: pointer;
+	width: 50px;
+	height: 46px;
 }
 
 #volumeSlider {
 	position: absolute;
-	height: 200px;
-	top: -200px;
+	height: 100px;
+	bottom: 66px;
 	display: block;
 	right: 25px;
 }

@@ -1,6 +1,6 @@
 // Set debugmode to true and transactions/trades will be
 // randomly generated, and no outside connections will be made.
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 var DONATION_ADDRESS;
 

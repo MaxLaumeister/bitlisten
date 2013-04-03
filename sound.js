@@ -1,3 +1,5 @@
+var globalVolume = 100;
+
 function Sound() {
 
 }
@@ -47,10 +49,15 @@ Sound.init = function() {
 
 	$("#volumeSlider").noUiSlider({
 		range : [0, 100],
-		start : 50,
+		start : 0,
 		handles : 1,
-		orientation : "vertical"
+		step: 1,
+		orientation : "vertical",
+		slide : function() {
+			globalVolume = 100-$(this).val();
+		}
 	});
+
 }
 var currentNotes = 0;
 var noteTimeout = 200;
@@ -62,7 +69,7 @@ Sound.playRandomAtVolume = function(volume) {
 
 	var readyState = this.celesta[randomIndex].get("readyState");
 	if (readyState >= 2 && currentNotes < 5) {
-		this.celesta[randomIndex].stop().setVolume(volume).play();
+		this.celesta[randomIndex].stop().setVolume(volume*(globalVolume/100)).play();
 		currentNotes++;
 		setTimeout(function() {
 			currentNotes--;
@@ -77,6 +84,6 @@ Sound.playRandomSwell = function() {
 
 	var readyState = this.swells[randomIndex].get("readyState");
 	if (readyState >= 2)
-		this.swells[randomIndex].stop().play();
+		this.swells[randomIndex].stop().setVolume(globalVolume/100).play();
 }
 
