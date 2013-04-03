@@ -59,7 +59,7 @@
 		<div id="connectionStatus" class="monospace">
 			<div id="connectionInnerDiv">
 				<p><label><input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'> <span id="blockchainStatus"></span></label></p>
-				<p><label><input id="mtgoxCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TradeSocket.init() : TradeSocket.close();'> <span id="mtgoxStatus"></span></label></p>
+				<p><label><input id="mtgoxCheckBox" type='checkbox' onchange='this.checked ? TradeSocket.init() : TradeSocket.close();'> <span id="mtgoxStatus"></span></label></p>
 			</div>
 		</div>
 		<div id="volumeControl"></div>
