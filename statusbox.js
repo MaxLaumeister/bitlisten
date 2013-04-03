@@ -1,7 +1,7 @@
 var CONNECTED = "Connected.";
 var CONNECTING = "Connecting...";
 var NO_SUPPORT = "No browser support.";
-var CLOSED = "Connection closed.";
+var CLOSED = "Click to connect.";
 
 function StatusBox() {
 	
@@ -15,6 +15,16 @@ StatusBox.init = function(debugmode) {
 		this.blockchain.html("");
 		this.mtgox.html("Debug mode.")
 	}
+	
+		if ($("#blockchainCheckBox").prop("checked"))
+		StatusBox.reconnecting("blockchain");
+	else
+		StatusBox.closed("blockchain");
+
+	if ($("#mtgoxCheckBox").prop("checked"))
+		StatusBox.reconnecting("mtgox");
+	else
+		StatusBox.closed("mtgox");
 }
 
 // "type" can be either "blockchain" or "mtgox"

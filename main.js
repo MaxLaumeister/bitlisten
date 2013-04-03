@@ -26,13 +26,10 @@ $(document).ready(function() {
 	$("#noJavascript").css("display", "none");
 	
 	StatusBox.init(DEBUG_MODE);
-	StatusBox.closed("blockchain");
-	StatusBox.closed("mtgox");
 	
 	$("#clickSuppress").click(function () {
       $("#noInternetExplorer").slideUp(300);
     });
-    
     
 	
 	// Create a bubble spawner for testing
