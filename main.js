@@ -13,25 +13,24 @@ var TICK_SPEED = 50;
 var updateTargets = new Array();
 
 // Preload images
-    var bubbleImage = new Image();
-    bubbleImage.src = "images/bubble.png";
-    var blockImage = new Image();
-    blockImage.src = "images/block.png";
-    
-    var debugSpawner;
+var bubbleImage = new Image();
+bubbleImage.src = "images/bubble.png";
+var blockImage = new Image();
+blockImage.src = "images/block.png";
+
+var debugSpawner;
 
 $(document).ready(function() {
 	DONATION_ADDRESS = $("#donationAddress").html();
 	// Because the user has javascript running:
 	$("#noJavascript").css("display", "none");
-	
+
 	StatusBox.init(DEBUG_MODE);
-	
-	$("#clickSuppress").click(function () {
-      $("#noInternetExplorer").slideUp(300);
-    });
-    
-	
+
+	$("#clickSuppress").click(function() {
+		$("#noInternetExplorer").slideUp(300);
+	});
+
 	// Create a bubble spawner for testing
 	debugSpawner = function() {
 		// Generate some test bubbles
@@ -55,20 +54,21 @@ $(document).ready(function() {
 				new Transaction(volume, false, volume * 75, 'USD');
 		}
 	}
-	
 	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
 });
 
 $(window).bind("load", function() {
-   if (DEBUG_MODE) {
+	if (DEBUG_MODE) {
 		setInterval(debugSpawner, 100);
 	} else {
-		if ($("#blockchainCheckBox").prop("checked")) TransactionSocket.init();
-		if ($("#mtgoxCheckBox").prop("checked")) TradeSocket.init();
+		if ($("#blockchainCheckBox").prop("checked"))
+			TransactionSocket.init();
+		if ($("#mtgoxCheckBox").prop("checked"))
+			TradeSocket.init();
 	}
 
 	globalUpdate();
-	
+
 	Sound.init();
 });
 

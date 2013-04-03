@@ -27,16 +27,19 @@
 		<!--<script type="text/javascript" src="/min/?f=engine/jquery-1.9.1.min.js,engine/reconnecting-websocket.min.js,engine/buzz.js,engine/extend.js,statusbox.js,socket.js,sound.js,floatable.js,block.js,transaction.js,main.js"></script>-->
 
 		<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-24440376-8']);
-		_gaq.push(['_setDomainName', 'listentobitcoin.com']);
-		_gaq.push(['_trackPageview']);
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-24440376-8']);
+			_gaq.push(['_setDomainName', 'listentobitcoin.com']);
+			_gaq.push(['_trackPageview']);
 
-		(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
 
 		</script>
 	</head>
@@ -58,8 +61,16 @@
 		<div id="pageDiv"></div>
 		<div id="connectionStatus" class="monospace">
 			<div id="connectionInnerDiv">
-				<p><label><input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'> <span id="blockchainStatus"></span></label></p>
-				<p><label><input id="mtgoxCheckBox" type='checkbox' onchange='this.checked ? TradeSocket.init() : TradeSocket.close();'> <span id="mtgoxStatus"></span></label></p>
+				<p>
+					<label>
+						<input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'>
+						<span id="blockchainStatus"></span></label>
+				</p>
+				<p>
+					<label>
+						<input id="mtgoxCheckBox" type='checkbox' onchange='this.checked ? TradeSocket.init() : TradeSocket.close();'>
+						<span id="mtgoxStatus"></span></label>
+				</p>
 			</div>
 		</div>
 		<div id="volumeControl"></div>

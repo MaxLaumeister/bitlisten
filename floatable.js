@@ -55,7 +55,7 @@ Floatable.prototype.addImage = function(image, width, height) {
 	this.canvas.style.top = "0px";
 	this.canvas.style.left = "0px";
 	var ctx = this.canvas.getContext("2d");
-	ctx.drawImage(this.image, 0, 0, width-1, height-1);
+	ctx.drawImage(this.image, 0, 0, width - 1, height - 1);
 
 	this.div.appendChild(this.canvas);
 }

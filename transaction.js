@@ -20,7 +20,8 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	var minVolume = 0.3;
 	var maxVolume = 0.5;
 	var volume = bitcoins / (maxBitcoins / (maxVolume - minVolume)) + minVolume;
-	if (volume > maxVolume) volume = maxVolume;
+	if (volume > maxVolume)
+		volume = maxVolume;
 	Sound.playRandomAtVolume(volume * 100);
 }
 

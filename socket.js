@@ -8,12 +8,13 @@ function TransactionSocket() {
 
 TransactionSocket.init = function() {
 	// Terminate previous connection, if any
-	if (this.connection) this.connection.close();
-	
+	if (this.connection)
+		this.connection.close();
+
 	if ('WebSocket' in window) {
 		var connection = new ReconnectingWebSocket('ws://ws.blockchain.info:8335/inv');
 		this.connection = connection;
-		
+
 		StatusBox.reconnecting("blockchain");
 
 		connection.onopen = function() {
@@ -27,13 +28,18 @@ TransactionSocket.init = function() {
 			};
 			connection.send(JSON.stringify(newTransactions));
 			connection.send(JSON.stringify(newBlocks));
-			connection.send(JSON.stringify({"op":"ping_tx"})); // Display the latest transaction so the user sees something.
+			connection.send(JSON.stringify({
+				"op" : "ping_tx"
+			}));
+			// Display the latest transaction so the user sees something.
 		}
 
 		connection.onclose = function() {
 			console.log('Blockchain.info: Connection closed');
-			if ($("#blockchainCheckBox").prop("checked")) StatusBox.reconnecting("blockchain");
-			else StatusBox.closed("blockchain");
+			if ($("#blockchainCheckBox").prop("checked"))
+				StatusBox.reconnecting("blockchain");
+			else
+				StatusBox.closed("blockchain");
 		}
 
 		connection.onerror = function(error) {
@@ -53,7 +59,7 @@ TransactionSocket.init = function() {
 
 				var bitcoins = transacted / satoshi;
 				console.log("Transaction: " + bitcoins + " BTC");
-				
+
 				var donation = false;
 				var outputs = data.x.out;
 				for (var i = 0; i < outputs.length; i++) {
@@ -65,9 +71,7 @@ TransactionSocket.init = function() {
 				}
 
 				new Transaction(bitcoins);
-			}
-
-			else if (data.op == "block") {
+			} else if (data.op == "block") {
 				var blockHeight = data.x.height;
 				var transactions = data.x.nTx;
 				var volumeSent = data.x.estimatedBTCSent;
@@ -89,22 +93,23 @@ TransactionSocket.init = function() {
 }
 
 TransactionSocket.close = function() {
-	if (this.connection) this.connection.close();
+	if (this.connection)
+		this.connection.close();
 	StatusBox.closed("blockchain");
 }
-
 function TradeSocket() {
-	
+
 }
 
 TradeSocket.init = function() {
 	// Terminate previous connection, if any
-	if (this.connection) this.connection.disconnect();
-	
+	if (this.connection)
+		this.connection.disconnect();
+
 	// Load Mtgox socket.io library
 	var self = this;
 	StatusBox.reconnecting("mtgox");
-	
+
 	$.getScript("https://socketio.mtgox.com/socket.io/socket.io.js", function() {
 		// Make connection to Mtgox
 		var connection = io.connect('https://socketio.mtgox.com/mtgox');
@@ -128,8 +133,10 @@ TradeSocket.init = function() {
 
 		connection.on('disconnect', function() {
 			console.log('Mtgox: Connection closed');
-			if ($("#mtgoxCheckBox").prop("checked")) StatusBox.reconnecting("mtgox");
-			else StatusBox.closed("mtgox");
+			if ($("#mtgoxCheckBox").prop("checked"))
+				StatusBox.reconnecting("mtgox");
+			else
+				StatusBox.closed("mtgox");
 		});
 
 		connection.on('error', function() {
@@ -154,8 +161,8 @@ TradeSocket.init = function() {
 }
 
 TradeSocket.close = function() {
-	if (this.connection) this.connection.disconnect();
+	if (this.connection)
+		this.connection.disconnect();
 	StatusBox.closed("mtgox");
 }
-
 
