@@ -44,6 +44,13 @@ Sound.init = function() {
 			$("#volumeControl").css("background-position", "0 -46px");
 		}
 	});
+
+	$("#volumeSlider").noUiSlider({
+		range : [0, 100],
+		start : 50,
+		handles : 1,
+		orientation : "vertical"
+	});
 }
 var currentNotes = 0;
 var noteTimeout = 200;

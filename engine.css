@@ -68,8 +68,8 @@ a {
 
 #header {
 	position: fixed;
-	top:0;
-	left:0;
+	top: 0;
+	left: 0;
 	z-index: 1;
 	color: white;
 	width: 100%;
@@ -99,6 +99,14 @@ a {
 	background-image: url('images/sound.png');
 	background-position: 0 -46px;
 	cursor: pointer;
+}
+
+#volumeSlider {
+	position: absolute;
+	height: 200px;
+	top: -200px;
+	display: block;
+	right: 25px;
 }
 
 #noJavascript {
