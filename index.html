@@ -76,9 +76,18 @@
 				</p>
 			</div>
 		</div>
-		<div id="volumeWrapper"class="interface">
+		<div id="volumeWrapper" class="interface">
 			<div id="volumeControl"></div>
 			<div id="volumeSlider" class="noUiSlider"></div>
+		</div>
+		<div id="soundControls" class="interface">
+			<div id="scalePitch" class="monospace">
+				<p>
+					<label>
+						<input id="scalePitchCheckBox" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
+						Scale pitch with transaction amount (bigger transaction = deeper sound)</label>
+				</p>
+			</div>
 		</div>
 		<div id="hideInterface" class="serif" onclick='toggleInterface()'>[ Hide Interface ]</div>
 		<div id="noJavascript">

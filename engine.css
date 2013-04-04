@@ -91,13 +91,13 @@ a {
 
 #volumeWrapper {
 	position: fixed;
-	bottom: 0;
+	bottom: 24px;
 	right: 0;
 	margin: 2em;
 }
 
 #volumeControl {
-	background-image: url('images/sound.png');
+	background: url('images/sound.png') right;
 	background-position: 0 -46px;
 	cursor: pointer;
 	width: 50px;
@@ -115,6 +115,14 @@ a {
 	bottom: 66px;
 	display: block;
 	right: 20px;
+}
+
+#soundControls {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 2em;
+	color: white;
 }
 
 #hideInterface {

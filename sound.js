@@ -1,4 +1,5 @@
 var globalVolume = 100;
+var globalScalePitch = true;
 
 function Sound() {
 
@@ -65,17 +66,40 @@ var noteTimeout = 200;
 Sound.playRandomAtVolume = function(volume) {
 	if (globalMute)
 		return;
-	var randomIndex = Math.floor(Math.random() * this.celesta.length);
+		
+	var randomPitch = Math.floor(Math.random() * 100);
+	this.playPitchAtVolume(volume, randomPitch);
+}
 
-	var readyState = this.celesta[randomIndex].get("readyState");
+Sound.playPitchAtVolume = function(volume, pitch) {
+	if (globalMute)
+		return;
+	
+	// Find the index corresponding to the requested pitch
+	var index = Math.floor(pitch / 100.0 * this.celesta.length);
+	//console.log("Pitch: " + pitch);
+	
+	// Here we fuzz the index a bit to prevent the same sound
+	// from being heard over and over again, which gets annoying
+	var fuzz = Math.floor(Math.random() * 4) - 2;
+	index += fuzz
+	index = Math.min(this.celesta.length - 1, index);
+	index = Math.max(0, index);
+	
+	//console.log("Fuzz: " + fuzz);
+	//console.log("Index: " + index);
+	
+
+	var readyState = this.celesta[index].get("readyState");
 	if (readyState >= 2 && currentNotes < 5) {
-		this.celesta[randomIndex].stop().setVolume(volume * (globalVolume / 100)).play();
+		this.celesta[index].stop().setVolume(volume * (globalVolume / 100)).play();
 		currentNotes++;
 		setTimeout(function() {
 			currentNotes--;
 		}, noteTimeout);
 	}
 }
+
 var lastBlockSound = -1;
 Sound.playRandomSwell = function() {
 	if (globalMute)
@@ -93,4 +117,3 @@ Sound.playRandomSwell = function() {
 	if (readyState >= 2)
 		this.swells[randomIndex].stop().setVolume(globalVolume).play();
 }
-
