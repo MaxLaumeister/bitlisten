@@ -73,3 +73,44 @@ Floatable.prototype.initPosition = function() {
 	this.innerDiv.style.top = (this.height / 2 - this.innerDiv.offsetHeight / 2) + 'px';
 	// Centers the text within the bubble
 }
+
+// Thanks to Myself-Remastered for the image used in this easter egg
+// http://myself-remastered.deviantart.com/art/Derpy-Delivery-251264643
+var easterSuccess = function() {
+	var derpy = new Floatable();
+	derpy.width = 53;
+	derpy.height = 48;
+	
+	derpy.image = document.createElement('img');
+	derpy.image.src = "images/easteregg.gif";
+	derpy.image.height = derpy.height;
+	derpy.image.width = derpy.width;
+	derpy.image.style.position = "absolute";
+	derpy.image.style.top = "0px";
+	derpy.image.style.left = "0px";
+	derpy.div.appendChild(derpy.image);
+	
+	derpy.initPosition();
+	
+	derpy.update = function() {
+		Floatable.prototype.update.call(this);
+		this.velocity.x += Math.random() * 0.3 - 0.15;
+		if (derpy.velocity.x > 0.1) {
+			$(this.div).css({
+				"-moz-transform": "scaleX(-1)",
+        		"-o-transform": "scaleX(-1)",
+        		"-webkit-transform": "scaleX(-1)",
+        		"transform": "scaleX(-1)"
+			});
+		}
+		if (derpy.velocity.x < -0.1) {
+			$(this.div).css({
+				"-moz-transform": "scaleX(1)",
+        		"-o-transform": "scaleX(1)",
+        		"-webkit-transform": "scaleX(1)",
+        		"transform": "scaleX(1)"
+			});
+		}
+	}
+}
+new Konami(easterSuccess);
