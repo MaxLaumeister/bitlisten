@@ -109,46 +109,42 @@ function TradeSocket() {
 TradeSocket.init = function() {
 	// Terminate previous connection, if any
 	if (this.connection)
-		this.connection.disconnect();
+		this.connection.close();
 
-	// Load Mtgox socket.io library
-	var self = this;
-	StatusBox.reconnecting("mtgox");
+	if ('WebSocket' in window) {
+		var connection = new ReconnectingWebSocket('ws://websocket.mtgox.com:80/mtgox');
+		this.connection = connection;
 
-	$.getScript("https://socketio.mtgox.com/socket.io/socket.io.js", function() {
-		// Make connection to Mtgox
-		var connection = io.connect('https://socketio.mtgox.com/mtgox');
-		self.connection = connection;
-		console.log("Opening Mtgox connection.");
+		StatusBox.reconnecting("mtgox");
 
-		connection.on('connect', function() {
-			console.log('Mtgox: Connection open!');
+		connection.onopen = function() {
+			console.log('Mt.Gox: Connection open!');
 			StatusBox.connected("mtgox");
-
-			// Unsubscribe from depth and ticker
-			connection.emit('message', {
+			
+			var unsubDepth = {
 				"op" : "unsubscribe",
 				"channel" : "24e67e0d-1cad-4cc0-9e7a-f8523ef460fe"
-			});
-			connection.emit('message', {
-				"op" : "unsubscribe",
-				"channel" : "d5f06780-30a8-4a48-a2f8-7ed181b4a13f"
-			});
-		});
+			}
+			
+			connection.send(JSON.stringify(unsubDepth));
+		}
 
-		connection.on('disconnect', function() {
-			console.log('Mtgox: Connection closed');
+		connection.onclose = function() {
+			console.log('Mt.Gox: Connection closed');
 			if ($("#mtgoxCheckBox").prop("checked"))
 				StatusBox.reconnecting("mtgox");
 			else
 				StatusBox.closed("mtgox");
-		});
+		}
 
-		connection.on('error', function() {
-			console.log('Mtgox: Connection error.');
-		});
+		connection.onerror = function(error) {
+			console.log('Mt.Gox: Connection Error: ' + error);
+		}
 
-		connection.on('message', function(message) {
+		connection.onmessage = function(e) {
+			var message = JSON.parse(e.data);
+			console.log(message);
+			
 			if (message.trade) {
 				console.log("Trade: " + message.trade.amount_int / satoshi + " BTC | " + (message.trade.price * message.trade.amount_int / satoshi) + " " + message.trade.price_currency);
 				// 0.57 BTC | 42.75 USD
@@ -161,15 +157,16 @@ TradeSocket.init = function() {
 					new Transaction(bitcoins, false, currency, currencyName);
 				}, Math.random() * DELAY_CAP);
 			}
-		});
-
-	});
-
+		}
+	} else {
+		//WebSockets are not supported.
+		console.log("No websocket support.");
+		StatusBox.nosupport("mtgox");
+	}
 }
 
 TradeSocket.close = function() {
 	if (this.connection)
-		this.connection.disconnect();
+		this.connection.close();
 	StatusBox.closed("mtgox");
 }
-
