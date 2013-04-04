@@ -84,6 +84,6 @@ Sound.playRandomSwell = function() {
 
 	var readyState = this.swells[randomIndex].get("readyState");
 	if (readyState >= 2)
-		this.swells[randomIndex].stop().setVolume(globalVolume/100).play();
+		this.swells[randomIndex].stop().setVolume(globalVolume).play();
 }
 
