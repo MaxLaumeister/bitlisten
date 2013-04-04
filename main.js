@@ -54,8 +54,22 @@ $(document).ready(function() {
 				new Transaction(volume, false, volume * 75, 'USD');
 		}
 	}
-	//new Block(228158, 270, 100 * satoshi, 153 * 1024);
+	// Spam the following line into console, it's kind of fun.
+	// new Block(228158, 270, 100 * satoshi, 153 * 1024);
 });
+
+// Function for handling interface show/hide
+var toggleInterface = function() {
+	if ($(".interface:hidden").length === 0) {
+		$(".interface").fadeOut(500);
+		$("#hideInterface").html("[ Show Interface ]");
+		$("#hideInterface").css("opacity", "0.5");
+	} else {
+		$(".interface").fadeIn(500);
+		$("#hideInterface").html("[ Hide Interface ]");
+		$("#hideInterface").css("opacity", "1");
+	}
+}
 
 $(window).bind("load", function() {
 	if (DEBUG_MODE) {

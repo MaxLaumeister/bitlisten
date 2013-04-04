@@ -74,7 +74,7 @@ a {
 	color: white;
 	width: 100%;
 	text-align: center;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.65);
 	padding: 10px;
 }
 
@@ -115,6 +115,20 @@ a {
 	bottom: 66px;
 	display: block;
 	right: 20px;
+}
+
+#hideInterface {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 10px;
+	z-index: 1;
+	color: white;
+	cursor: pointer;
+	transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s; /* Firefox 4 */
+	-webkit-transition: opacity 0.5s; /* Safari and Chrome */
+	-o-transition: opacity 0.5s; /* Opera */
 }
 
 #noJavascript {

@@ -46,7 +46,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="header" class="serif">
+		<div id="header" class="serif interface">
 			<img src="images/logo.png" alt="Listen To Bitcoin">
 			<div id="headerInfo">
 				<p>
@@ -62,7 +62,7 @@
 		</div>
 		<div id="pageDiv"></div>
 		<div id="connectionStatus" class="monospace">
-			<div id="connectionInnerDiv">
+			<div id="connectionInnerDiv" class="interface">
 				<p>
 					<label>
 						<input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'>
@@ -75,10 +75,11 @@
 				</p>
 			</div>
 		</div>
-		<div id="volumeWrapper">
+		<div id="volumeWrapper"class="interface">
 			<div id="volumeControl"></div>
 			<div id="volumeSlider" class="noUiSlider"></div>
 		</div>
+		<div id="hideInterface" class="serif" onclick='toggleInterface()'>[ Hide Interface ]</div>
 		<div id="noJavascript">
 			<p>
 				Please enable Javascript, or try a different web browser.
