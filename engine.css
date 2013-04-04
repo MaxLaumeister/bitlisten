@@ -102,6 +102,11 @@ a {
 	cursor: pointer;
 	width: 50px;
 	height: 46px;
+	opacity: 0.5;
+}
+
+#volumeControl:hover {
+	opacity: 1;
 }
 
 #volumeSlider {
@@ -109,7 +114,7 @@ a {
 	height: 100px;
 	bottom: 66px;
 	display: block;
-	right: 25px;
+	right: 20px;
 }
 
 #noJavascript {
