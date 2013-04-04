@@ -51,10 +51,10 @@ Sound.init = function() {
 		range : [0, 100],
 		start : 0,
 		handles : 1,
-		step: 1,
+		step : 1,
 		orientation : "vertical",
 		slide : function() {
-			globalVolume = 100-$(this).val();
+			globalVolume = 100 - $(this).val();
 		}
 	});
 
@@ -69,18 +69,25 @@ Sound.playRandomAtVolume = function(volume) {
 
 	var readyState = this.celesta[randomIndex].get("readyState");
 	if (readyState >= 2 && currentNotes < 5) {
-		this.celesta[randomIndex].stop().setVolume(volume*(globalVolume/100)).play();
+		this.celesta[randomIndex].stop().setVolume(volume * (globalVolume / 100)).play();
 		currentNotes++;
 		setTimeout(function() {
 			currentNotes--;
 		}, noteTimeout);
 	}
 }
-
+var lastBlockSound = -1;
 Sound.playRandomSwell = function() {
 	if (globalMute)
 		return;
-	var randomIndex = Math.floor(Math.random() * this.swells.length);
+
+	var randomIndex;
+	do {
+		randomIndex = Math.floor(Math.random() * this.swells.length);
+		console.log("New Number");
+	} while (randomIndex == lastBlockSound);
+
+	lastBlockSound = randomIndex;
 
 	var readyState = this.swells[randomIndex].get("readyState");
 	if (readyState >= 2)
