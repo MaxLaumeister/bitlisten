@@ -1,5 +1,7 @@
 var satoshi = 100000000;
 
+var DELAY_CAP = 1000;
+
 var lastBlockHeight = 0;
 
 function TransactionSocket() {
@@ -70,7 +72,10 @@ TransactionSocket.init = function() {
 					}
 				}
 
-				new Transaction(bitcoins);
+				setTimeout(function() {
+					new Transaction(bitcoins);
+				}, Math.random() * DELAY_CAP);
+
 			} else if (data.op == "block") {
 				var blockHeight = data.x.height;
 				var transactions = data.x.nTx;
@@ -151,8 +156,10 @@ TradeSocket.init = function() {
 				var bitcoins = message.trade.amount_int / satoshi;
 				var currency = (message.trade.price * message.trade.amount_int / satoshi);
 				var currencyName = message.trade.price_currency;
-
-				new Transaction(bitcoins, false, currency, currencyName);
+				
+				setTimeout(function() {
+					new Transaction(bitcoins, false, currency, currencyName);
+				}, Math.random() * DELAY_CAP);
 			}
 		});
 
