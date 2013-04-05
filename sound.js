@@ -1,5 +1,5 @@
 var globalVolume = 100;
-var globalScalePitch = true;
+var globalScalePitch;
 
 function Sound() {
 
@@ -58,6 +58,8 @@ Sound.init = function() {
 			globalVolume = 100 - $(this).val();
 		}
 	});
+	
+	globalScalePitch = $("#scalePitchCheckBox").attr("checked");
 
 }
 var currentNotes = 0;
