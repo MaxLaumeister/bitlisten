@@ -63,7 +63,7 @@ a {
 	bottom: 0;
 	left: 0;
 	margin: 2em;
-	width: 40em;
+	width: 33em;
 }
 
 #header {
@@ -91,7 +91,7 @@ a {
 
 #volumeWrapper {
 	position: fixed;
-	bottom: 24px;
+	bottom: 64px;
 	right: 0;
 	margin: 2em;
 }
