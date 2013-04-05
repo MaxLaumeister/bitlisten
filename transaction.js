@@ -28,7 +28,23 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	var volume = bitcoins / (maxBitcoins / (maxVolume - minVolume)) + minVolume;
 	if (volume > maxVolume)
 		volume = maxVolume;
-	Sound.playRandomAtVolume(volume * 100);
+	
+	var maxPitch = 100.0;
+	// We need to use a log that makes it so that maxBitcoins reaches the maximum pitch.
+	// Well, the opposite of the maximum pitch. Anyway. So we solve:
+	// maxPitch = log(maxBitcoins + logUsed) / log(logUsed)
+	// For maxPitch = 100 (for 100%) and maxBitcoins = 1000, that gives us...
+	var logUsed = 1.0715307808111486871978099;
+	// So we find the smallest value between log(bitcoins + logUsed) / log(logUsed) and our max pitch...
+	var pitch = Math.min(maxPitch, Math.log(bitcoins + logUsed) / Math.log(logUsed));
+	// ...we invert it so that a bigger transaction = a deeper noise...
+	pitch = maxPitch - pitch;
+	// ...and we play the sound!
+	if(globalScalePitch) {
+		Sound.playPitchAtVolume(volume * 100, pitch);
+	} else {
+		Sound.playRandomAtVolume(volume * 100);
+	}
 }
 
 extend(Floatable, Transaction);
