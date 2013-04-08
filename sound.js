@@ -1,5 +1,5 @@
 var globalVolume = 100;
-var globalScalePitch;
+var globalScalePitch = true;
 var bankNumber = 0;
 var bankNote;
 var globalBank;
@@ -11,7 +11,7 @@ function Sound() {
 var soundBank = [];
 	// the second number is the number of sound files available
 	soundBank[0] = ["celesta", 22];
-	soundBank[1] = ["celestaA", 2];
+	soundBank[1] = ["planet", 8];
 	soundBank[2] = ["celestaB", 1];
 	
 
