@@ -83,6 +83,8 @@ $(window).bind("load", function() {
 
 	globalUpdate();
 
+	Sound.loadup(bankNumber);
+						console.log("sound loadup");
 	Sound.init();
 });
 

@@ -63,7 +63,7 @@ a {
 	bottom: 0;
 	left: 0;
 	margin: 2em;
-	width: 40em;
+	width: 33em;
 }
 
 #header {
@@ -91,7 +91,7 @@ a {
 
 #volumeWrapper {
 	position: fixed;
-	bottom: 24px;
+	bottom: 120px;
 	right: 0;
 	margin: 2em;
 }
@@ -117,6 +117,20 @@ a {
 	right: 20px;
 }
 
+#selectaWrapper {
+	position: fixed;
+	bottom: 100px;
+	right: 200px;
+	margin: 5px;
+}
+
+#selectaSlider {
+	position: absolute;
+	width: 50px;
+	bottom: 66px;
+	display: block;
+	right: 20px;
+}
 #soundControls {
 	position: fixed;
 	bottom: 0;
@@ -170,6 +184,14 @@ a {
 	display: none;
 }
 
+.selecta {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+    color:  white;
+    width: 87px;
+}
+    
 .serif {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
