@@ -1,5 +1,5 @@
 var globalVolume = 100;
-var globalScalePitch = true;
+var globalScalePitch;
 var bankNumber = 0;
 var bankNote;
 var globalBank;
