@@ -30,22 +30,26 @@ Sound.loadup = function(bankNumber){
 	currentSound = new Array();
 	for (var i = 1; i <= soundBank[bankNumber][1]; i++) {
 		istring = zeroPad(i, 3);
-		newSound = new buzz.sound("sounds/"+ soundBank[bankNumber][0] +"/"+ soundBank[bankNumber][0] + istring, {
-			formats : ["ogg", "mp3"]
+		newSound = new Howl({
+			urls: ["sounds/"+ soundBank[bankNumber][0] +"/"+ soundBank[bankNumber][0] + istring + ".ogg",
+			       "sounds/"+ soundBank[bankNumber][0] +"/"+ soundBank[bankNumber][0] + istring + ".mp3"],
+			autoplay: false
 		});
-		currentSound.push(newSound);
 		newSound.load();
+		currentSound.push(newSound);
 	}
 	globalBank = currentSound;
 	
 	// String swells, for blocks
 	this.swells = new Array();
 	for (var i = 1; i <= 3; i++) {
-		newSound = new buzz.sound("sounds/swells/swell" + i, {
-			formats : ["ogg", "mp3"]
+		newSound = new Howl({
+			urls: ["sounds/swells/swell" + i +".ogg",
+				    "sounds/swells/swell" + i +".mp3"],
+			autoplay: false
 		});
-		this.swells.push(newSound);
 		newSound.load();
+		this.swells.push(newSound);
 	}
 }
 
@@ -59,10 +63,11 @@ Sound.init = function() {
 	$("#volumeControl").click(function() {
 		if (!globalMute) {
 			globalMute = true;
-			buzz.all().stop();
+			Howler.mute();
 			$("#volumeControl").css("background-position", "0 0");
 		} else {
 			globalMute = false;
+			Howler.unmute();
 			$("#volumeControl").css("background-position", "0 -46px");
 		}
 	});
@@ -75,6 +80,7 @@ Sound.init = function() {
 		orientation : "vertical",
 		slide : function() {
 			globalVolume = 100 - $(this).val();
+			Howler.volume (globalVolume*.01);
 		}
 	});
 	
@@ -96,7 +102,7 @@ Sound.init = function() {
 		console.log("globalscalepitch loaded");
 }
 var currentNotes = 0;
-var noteTimeout = 200;
+var noteTimeout = 500;
 var currentSound = globalBank;
 
 Sound.playRandomAtVolume = function(volume) {
@@ -113,7 +119,7 @@ Sound.playPitchAtVolume = function(volume, pitch) {
 	
 	// Find the index corresponding to the requested pitch
 	var index = Math.floor(pitch / 100.0 * currentSound.length);
-	//console.log("Pitch: " + pitch);
+	console.log("Pitch: " + pitch);
 	
 	// Here we fuzz the index a bit to prevent the same sound
 	// from being heard over and over again, which gets annoying
@@ -126,9 +132,9 @@ Sound.playPitchAtVolume = function(volume, pitch) {
 	//console.log("Index: " + index);
 	
 
-	var readyState = currentSound[index].get("readyState");
-	if (readyState >= 2 && currentNotes < 5) {
-		currentSound[index].stop().setVolume(volume * (globalVolume / 100)).play();
+	//var readyState = currentSound[index].get("readyState");
+	if (currentNotes < 5) {
+		currentSound[index].play();
 		currentNotes++;
 		setTimeout(function() {
 			currentNotes--;
@@ -149,7 +155,7 @@ Sound.playRandomSwell = function() {
 
 	lastBlockSound = randomIndex;
 
-	var readyState = this.swells[randomIndex].get("readyState");
-	if (readyState >= 2)
-		this.swells[randomIndex].stop().setVolume(globalVolume).play();
+	//var readyState = this.swells[randomIndex].get("readyState");
+	//if (readyState >= 2)
+	this.swells[randomIndex].play();
 }
