@@ -4,6 +4,8 @@ var DEBUG_MODE = false;
 
 var DONATION_ADDRESS;
 
+var SOUND_DONATION_ADDRESS;
+
 var globalMute = false;
 
 var instanceId = 0;
@@ -83,8 +85,7 @@ $(window).bind("load", function() {
 
 	globalUpdate();
 
-	Sound.loadup(bankNumber);
-						console.log("sound loadup");
+	Sound.loadup();
 	Sound.init();
 });
 
