@@ -84,7 +84,7 @@ $(window).bind("load", function() {
 	}
 
 	globalUpdate();
-
+	
 	Sound.loadup();
 	Sound.init();
 });

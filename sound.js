@@ -4,6 +4,9 @@ var bankNumber = 0;
 var bankNote;
 var globalBank;
 
+//init volume at 50%
+Howler.volume (globalVolume*.01);
+
 function Sound() {
 
 }
@@ -128,7 +131,7 @@ Sound.init = function() {
 			$("#volumeControl").css("background-position", "0 -46px");
 		}
 	});
-
+        
 	$("#volumeSlider").noUiSlider({
 		range : [0, 100],
 		start : 50,
