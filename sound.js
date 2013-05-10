@@ -1,4 +1,4 @@
-var globalVolume = 100;
+var globalVolume = 50;
 var globalScalePitch;
 var bankNumber = 0;
 var bankNote;
@@ -131,7 +131,7 @@ Sound.init = function() {
 
 	$("#volumeSlider").noUiSlider({
 		range : [0, 100],
-		start : 0,
+		start : 50,
 		handles : 1,
 		step : 1,
 		orientation : "vertical",
