@@ -13,6 +13,7 @@ img {
 
 a {
 	color: white;
+        text-decoration: none;
 }
 
 #pageDiv {
@@ -91,8 +92,7 @@ a {
 
 #volumeWrapper {
 	position: fixed;
-	bottom: 64px;
-	right: 0;
+	bottom: 120px;	right: 0;
 	margin: 2em;
 }
 
@@ -117,6 +117,20 @@ a {
 	right: 20px;
 }
 
+#selectaWrapper {
+	position: fixed;
+	bottom: 150px;
+	right: 200px;
+	margin: 5px;
+}
+
+#selectaSlider {
+	position: absolute;
+	width: 100px;
+	bottom: 66px;
+	display: block;
+	right: 20px;
+}
 #soundControls {
 	position: fixed;
 	bottom: 0;
@@ -170,6 +184,19 @@ a {
 	display: none;
 }
 
+#musicianDonation a{
+    color: green;
+    text-decoration: none
+}
+
+.selecta {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+    color:  white;
+    width: 87px;
+}
+    
 .serif {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
