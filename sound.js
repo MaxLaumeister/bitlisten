@@ -14,99 +14,34 @@ var soundBank = [];
 	soundBank[1] = ["planet", 33];
 	soundBank[2] = ["wikki", 13];
 
-Sound.loadup = function(){
+function zeroPad(num, places) {
+	var zero = places - num.toString().length + 1;
+	return Array(+(zero > 0 && zero)).join("0") + num;
+}
 	
-	function zeroPad(num, places) {
-		var zero = places - num.toString().length + 1;
-		return Array(+(zero > 0 && zero)).join("0") + num;
-	}
-
+Sound.loadup = function(){
 	var newSound;
 	var istring;
-	
+
 	// sound0 = celesta
 	sound0 = new Array(); 
-        for (var i = 1; i <= 22; i++) {
-                istring = zeroPad(i, 3);
-                newSound = new Howl({
-                        urls: ["sounds/celesta/" + "celesta" + istring + ".ogg",
-                               "sounds/celesta/" + "celesta" + istring + ".mp3"],
-                        autoplay: false
-                });
-                sound0.push(newSound);
-                newSound.load();
-        }
-        
-        // sound1 = planet
+
+    // sound1 = planet
 	sound1 = new Array(); 
-        for (var i = 1; i <= 33; i++) {
-                istring = zeroPad(i, 3);
-                newSound = new Howl({
-                        urls: ["sounds/planet/" + "planet" + istring + ".ogg",
-                               "sounds/planet/" + "planet" + istring + ".mp3"],
-                        autoplay: false
-                });
-                sound1.push(newSound);
-                newSound.load();
-        }
-        
-         // sound2 = celestaB
+
+    // sound2 = celestaB
 	sound2 = new Array(); 
-        for (var i = 1; i <= 13; i++) {
-                istring = zeroPad(i, 3);
-                newSound = new Howl({
-                        urls: ["sounds/wikki/" + "wikki" + istring + ".ogg",
-                               "sounds/wikki/" + "wikki" + istring + ".mp3"],
-                        autoplay: false
-                });
-                sound2.push(newSound);
-                newSound.load();
-        }
-	//globalBank = currentSound;
-	
+
 	// String swells0, for blocks
 	swells0 = new Array();
-	for (var i = 1; i <= 3; i++) {
-		newSound = new Howl({
-			urls: ["sounds/swells0/swell" + i +".ogg",
-				    "sounds/swells0/swell" + i +".mp3"],
-			autoplay: false
-		});
-		newSound.load();
-		swells0.push(newSound);
-	}
-        
-        // String swells1, for blocks
+	
+	// String swells1, for blocks
 	swells1 = new Array();
-	for (var i = 1; i <= 3; i++) {
-		newSound = new Howl({
-			urls: ["sounds/swells1/planetswell" + i +".ogg",
-				    "sounds/swells1/planetswell" + i +".mp3"],
-			autoplay: false
-		});
-		newSound.load();
-		swells1.push(newSound);
-	}
-        
-        // String swells2, for blocks
+
+    // String swells2, for blocks
 	swells2 = new Array();
-	for (var i = 1; i <= 3; i++) {
-		newSound = new Howl({
-			urls: ["sounds/swells2/wikkiswell" + i +".ogg",
-				    "sounds/swells2/wikkiswell" + i +".mp3"],
-			autoplay: false
-		});
-		newSound.load();
-		swells2.push(newSound);
-	}
-        
-        currentSound = sound0;
-        currentSwells = swells0;
-        donationSound = new Howl({
-            urls: ["sounds/donation/thanks.ogg","sounds/donation/thanks.mp3"],
-            autoplay: false
-        });
-        
+	
+	// These variables are populated (and their sounds loaded) by the Sound.change function below.
 }
 
 
@@ -146,22 +81,92 @@ Sound.init = function() {
 
 Sound.change = function(instrument_number) {
     var musicianString = "Donate to instrument creator: ";
-	if (instrument_number == 0 )
-		{currentSound = sound0;
+	// INSTRUMENT 0
+	if (instrument_number == 0 ) {
+		// Load sound and swells if not already loaded
+		if (sound0.length == 0) {
+			for (var i = 1; i <= 22; i++) {
+				istring = zeroPad(i, 3);
+				newSound = new Howl({
+						urls: ["sounds/celesta/" + "celesta" + istring + ".ogg",
+							   "sounds/celesta/" + "celesta" + istring + ".mp3"],
+						autoplay: false
+				});
+				sound0.push(newSound);
+			}
+		}
+		if (swells0.length == 0) {
+			for (var i = 1; i <= 3; i++) {
+				newSound = new Howl({
+					urls: ["sounds/swells0/swell" + i +".ogg",
+							"sounds/swells0/swell" + i +".mp3"],
+					autoplay: false
+				});
+				swells0.push(newSound);
+			}
+		}
+		currentSound = sound0;
 		currentSwells = swells0;
 		$('#musicianDonation').text("");
+	}
+	// INSTRUMENT 1
+	else if (instrument_number == 1) {
+	    // Load sound and swells if not already loaded
+		if (sound1.length == 0) {
+			for (var i = 1; i <= 33; i++) {
+				istring = zeroPad(i, 3);
+				newSound = new Howl({
+						urls: ["sounds/planet/" + "planet" + istring + ".ogg",
+							   "sounds/planet/" + "planet" + istring + ".mp3"],
+						autoplay: false
+				});
+				sound1.push(newSound);
+			}
 		}
-	else if (instrument_number == 1)
-		{currentSound = sound1;
+        if (swells1.length == 0) {
+			for (var i = 1; i <= 3; i++) {
+				newSound = new Howl({
+					urls: ["sounds/swells1/planetswell" + i +".ogg",
+							"sounds/swells1/planetswell" + i +".mp3"],
+					autoplay: false
+				});
+				swells1.push(newSound);
+			}
+		}
+		currentSound = sound1;
 		currentSwells = swells1;
 		SOUND_DONATION_ADDRESS = "144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW";
-		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");}
-		
-	else if (instrument_number == 2)
-		{currentSound = sound2;
+		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");
+	}
+    // INSTRUMENT 2
+	else if (instrument_number == 2) {
+		// Load sound and swells if not already loaded
+		if (sound2.length == 0) {
+			for (var i = 1; i <= 13; i++) {
+				istring = zeroPad(i, 3);
+				newSound = new Howl({
+						urls: ["sounds/wikki/" + "wikki" + istring + ".ogg",
+							   "sounds/wikki/" + "wikki" + istring + ".mp3"],
+						autoplay: false
+				});
+				sound2.push(newSound);
+			}
+		}
+		if (swells2.length == 0) {
+			for (var i = 1; i <= 3; i++) {
+				newSound = new Howl({
+					urls: ["sounds/swells2/wikkiswell" + i +".ogg",
+							"sounds/swells2/wikkiswell" + i +".mp3"],
+					autoplay: false
+				});
+				swells2.push(newSound);
+			}
+		}
+	    currentSound = sound2;
 		currentSwells = swells2;
 		SOUND_DONATION_ADDRESS = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
-		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");}
+		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");
+		}
 }
 
 var currentNotes = 0;
