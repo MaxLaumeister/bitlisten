@@ -15,8 +15,6 @@ var soundBank = [];
 	soundBank[0] = ["celesta", 22];
 	soundBank[1] = ["planet", 33];
 	soundBank[2] = ["wikki", 13];
-	
-
 
 Sound.loadup = function(){
 	
@@ -130,7 +128,8 @@ Sound.init = function() {
 			$("#volumeControl").css("background-position", "0 -46px");
 		}
 	});
-        
+    
+	// Initialize sound slider
 	$("#volumeSlider").noUiSlider({
 		range : [0, 100],
 		start : 50,
@@ -143,42 +142,28 @@ Sound.init = function() {
 		}
 	});
 	
-	$("#selectaSlider").noUiSlider({
-		range : [0, 2],
-		start : 0,
-		handles : 1,
-		step : 1,
-		orientation : "horizontal",
-		slide : function() {
-			bankNumber = $(this).val();
-			$('#selectaNumber').text(soundBank[bankNumber][0]);
-                        if (bankNumber == 0 )
-                            {currentSound = sound0;
-                            currentSwells = swells0;
-                            $('#musicianDonation').text("");
-                            }
-                        else if (bankNumber == 1)
-                            {currentSound = sound1;
-                            currentSwells = swells1;
-                            SOUND_DONATION_ADDRESS = "144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW";
-                            musicianAddress = "144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW";
-                            $('#musicianDonation').html("<a href='bitcoin:144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW'>144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW</a>");}
-                            
-                        else if (bankNumber == 2)
-                            {currentSound = sound2;
-                            currentSwells = swells2;
-                            SOUND_DONATION_ADDRESS = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
-                            musicianAddress = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
-                            $('#musicianDonation').html("<a href='bitcoin:1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV'>1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV</a>");}
-                        
-			//Sound.loadup(bankNumber);
-			//Sound.init;
-		}
-	});
-	
 	globalScalePitch = $("#scalePitchCheckBox").attr("checked");
-		console.log("globalscalepitch loaded");
+	Sound.change(0);
 }
+
+Sound.change = function(instrument_number) {
+    var musicianString = "Donate to instrument creator: ";
+	if (instrument_number == 0 )
+		{currentSound = sound0;
+		currentSwells = swells0;
+		$('#musicianDonation').text("");
+		}
+	else if (instrument_number == 1)
+		{currentSound = sound1;
+		currentSwells = swells1;
+		$('#musicianDonation').html(musicianString + "<span>144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW</span>");}
+		
+	else if (instrument_number == 2)
+		{currentSound = sound2;
+		currentSwells = swells2;
+		$('#musicianDonation').html(musicianString + "<span>1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV</span>");}
+}
+
 var currentNotes = 0;
 var noteTimeout = 500;
 

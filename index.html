@@ -55,8 +55,8 @@
 				</p>
 				<p>
 					Most donations get highlighted: <a href="bitcoin:14zoTKB29NdsJRvk4qP3vB9mQZ3dcV3eWk"><span id="donationAddress" style="color: yellow" ;>14zoTKB29NdsJRvk4qP3vB9mQZ3dcV3eWk</span></a>
-                                        <br>
-                                        Donate to musician - most get special sound: <div id="musicianDonation"></div>
+                                        <br />
+                                        <span id="musicianDonation"></span>
 				</p>
 				<p class="subdued">
 					By Maximillian Laumeister &bull; <a href="https://github.com/MaxLaumeister/Listen-To-Bitcoin" target="_blank">Source Code</a> &bull; Email: max at listentobitcoin.com
@@ -82,13 +82,16 @@
 			<div id="volumeControl"></div>
 			<div id="volumeSlider" class="noUiSlider"></div>
 		</div>
-		<div id="selectaWrapper" class="interface">
-			<div id="selectaSlider" class="noUiSlider"></div>
-			<div id="selectaNumber" class="selecta"></div>
-			<div class="subdued">SELECT YOUR SOUND</div>
-		</div>
 		<div id="soundControls" class="interface">
 			<div id="scalePitch" class="monospace">
+				<p>Select Instrument:
+				<select onchange="Sound.change($(this).val())">
+					<option value="0">Celesta</option>
+					<option value="1">Planet</option>
+					<option value="2">Wikki</option>
+				</select>
+				</p>
+				<br />
 				<p>
 					<label>
 						<input id="scalePitchCheckBox" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
