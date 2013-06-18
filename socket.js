@@ -66,16 +66,9 @@ TransactionSocket.init = function() {
                                 var soundDonation = false;
 				var outputs = data.x.out;
 				for (var i = 0; i < outputs.length; i++) {
-					if ((outputs[i].addr) == DONATION_ADDRESS) {
+					if ((outputs[i].addr) == DONATION_ADDRESS || (outputs[i].addr) == SOUND_DONATION_ADDRESS) {
 						bitcoins = data.x.out[i].value / satoshi;
 						new Transaction(bitcoins, true);
-                                                donationSound.play();
-						return;
-					}
-                                        if ((outputs[i].addr) == SOUND_DONATION_ADDRESS) {
-						bitcoins = data.x.out[i].value / satoshi;
-						new Transaction(bitcoins, true);
-                                                donationSound.play();
 						return;
 					}
 				}

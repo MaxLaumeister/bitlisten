@@ -1,7 +1,5 @@
 var globalVolume = 50;
 var globalScalePitch;
-var bankNumber = 0;
-var bankNote;
 var globalBank;
 //init volume at 50%
 Howler.volume (globalVolume*.01);
@@ -156,12 +154,14 @@ Sound.change = function(instrument_number) {
 	else if (instrument_number == 1)
 		{currentSound = sound1;
 		currentSwells = swells1;
-		$('#musicianDonation').html(musicianString + "<span>144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW</span>");}
+		SOUND_DONATION_ADDRESS = "144b31mmaWQVDQFiUPo6HEzxc2Dm83WXrW";
+		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");}
 		
 	else if (instrument_number == 2)
 		{currentSound = sound2;
 		currentSwells = swells2;
-		$('#musicianDonation').html(musicianString + "<span>1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV</span>");}
+		SOUND_DONATION_ADDRESS = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
+		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");}
 }
 
 var currentNotes = 0;
@@ -212,7 +212,6 @@ Sound.playRandomSwell = function() {
 	var randomIndex;
 	do {
 		randomIndex = Math.floor(Math.random() * currentSwells.length);
-		console.log("New Number");
 	} while (randomIndex == lastBlockSound);
 
 	lastBlockSound = randomIndex;
