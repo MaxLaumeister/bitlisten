@@ -1,6 +1,6 @@
 ## Listen To Bitcoin ##
 
-Currently hosted at [**ListenToBitcoin.com**](http://listentobitcoin.com/).
+Current version hosted at [**BitListen.com**](http://bitlisten.com/). (ListenToBitcoin.com has been sold.)
 
 Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear new transactions, trades and blocks as they propagate through the Bitcoin Network.
 
@@ -8,18 +8,18 @@ Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear
 
 Listen To Bitcoin uses these libraries:
 
-* [Sound Buzz](http://buzz.jaysalvat.com/) by Jay Salvat
+* [Howler.js](http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library) by James Simpson
 * [Reconnecting-Websocket](https://github.com/joewalnes/reconnecting-websocket) by Joe Walnes
 * [Minify](https://code.google.com/p/minify/) (for minifying Javascript)
 
 Listen To Bitcoin uses these APIs:
 
 * [Blockchain.info](http://blockchain.info/) WebSocket API (For Transactions)
-* [Mt.Gox](https://mtgox.com/) Socket.io API (For Trades)
+* [Mt.Gox](https://mtgox.com/) WebSocket API (For Trades)
 
 ### Using Minify ###
 
-Minify will compress all of the javascript files (currently 11) into a single .js on the fly, reducing script load times from the web.
+Minify will compress all of the javascript files into a single .js on the fly, reducing script load times from the web.
 
 In the main branch, look for this comment in the ```<head>``` of index.html. This section includes the (currently 11) Javascript source files.
 
