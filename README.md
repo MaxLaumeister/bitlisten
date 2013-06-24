@@ -1,4 +1,4 @@
-## Listen To Bitcoin ##
+## BitListen - Listen To Bitcoin ##
 
 Current version hosted at [**BitListen.com**](http://bitlisten.com/). (ListenToBitcoin.com has been sold.)
 
