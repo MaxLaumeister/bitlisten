@@ -31,7 +31,7 @@ To invoke minify (which requires a PHP server), comment those scripts out and co
 
 ### License ###
 
-If you distribute this project in part or in full, please attribute with a link to either [the GitHub page](https://github.com/MaxLaumeister/Listen-To-Bitcoin) or to [ListenToBitcoin.com](http://listentobitcoin.com/). This software is available under The MIT License, reproduced below.
+If you distribute this project in part or in full, please attribute with a link to [the GitHub page](https://github.com/MaxLaumeister/Listen-To-Bitcoin). This software is available under The MIT License, reproduced below.
 
 Copyright (c) 2013 Maximillian Laumeister
 
