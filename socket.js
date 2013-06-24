@@ -60,12 +60,13 @@ TransactionSocket.init = function() {
 				}
 
 				var bitcoins = transacted / satoshi;
-				console.log("Transaction: " + bitcoins + " BTC");
+				//console.log("Transaction: " + bitcoins + " BTC");
 
 				var donation = false;
+                                var soundDonation = false;
 				var outputs = data.x.out;
 				for (var i = 0; i < outputs.length; i++) {
-					if ((outputs[i].addr) == DONATION_ADDRESS) {
+					if ((outputs[i].addr) == DONATION_ADDRESS || (outputs[i].addr) == SOUND_DONATION_ADDRESS) {
 						bitcoins = data.x.out[i].value / satoshi;
 						new Transaction(bitcoins, true);
 						return;
@@ -143,10 +144,10 @@ TradeSocket.init = function() {
 
 		connection.onmessage = function(e) {
 			var message = JSON.parse(e.data);
-			console.log(message);
+			//console.log(message);
 			
 			if (message.trade) {
-				console.log("Trade: " + message.trade.amount_int / satoshi + " BTC | " + (message.trade.price * message.trade.amount_int / satoshi) + " " + message.trade.price_currency);
+				//console.log("Trade: " + message.trade.amount_int / satoshi + " BTC | " + (message.trade.price * message.trade.amount_int / satoshi) + " " + message.trade.price_currency);
 				// 0.57 BTC | 42.75 USD
 
 				var bitcoins = message.trade.amount_int / satoshi;
