@@ -1,18 +1,18 @@
-## BitListen - Listen To Bitcoin ##
+## BitListen - Bitcoin Transaction Visualizer ##
 
-Current version hosted at [**BitListen.com**](http://bitlisten.com/). (ListenToBitcoin.com has been sold.)
+Current version hosted at [**BitListen.com**](http://bitlisten.com/). Project formerly known as "Listen to Bitcoin" (ListenToBitcoin.com has been sold.)
 
 Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear new transactions, trades and blocks as they propagate through the Bitcoin Network.
 
 ### APIs and Libraries ###
 
-Listen To Bitcoin uses these libraries:
+BitListen uses these libraries:
 
 * [Howler.js](http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library) by James Simpson
 * [Reconnecting-Websocket](https://github.com/joewalnes/reconnecting-websocket) by Joe Walnes
 * [Minify](https://code.google.com/p/minify/) (for minifying Javascript)
 
-Listen To Bitcoin uses these APIs:
+BitListen uses these APIs:
 
 * [Blockchain.info](http://blockchain.info/) WebSocket API (For Transactions)
 * [Mt.Gox](https://mtgox.com/) WebSocket API (For Trades)
@@ -31,7 +31,7 @@ To invoke minify (which requires a PHP server), comment those scripts out and co
 
 ### License ###
 
-If you distribute this project in part or in full, please attribute with a link to [the GitHub page](https://github.com/MaxLaumeister/Listen-To-Bitcoin). This software is available under The MIT License, reproduced below.
+If you distribute this project in part or in full, please attribute with a link to [the GitHub page](https://github.com/MaxLaumeister/BitListen). This software is available under The MIT License, reproduced below.
 
 Copyright (c) 2013 Maximillian Laumeister
 
