@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BitListen - Bitcoin Transaction Visualizer</title>
+		<meta name="description" content="Realtime Bitcoin transaction visualizer. See and hear new transactions, trades and blocks as they propagate.">
+		<meta name="keywords" content="BitListen,Listen To Bitcoin,Bitcoin,transactions,visualizer,trades,mtgox,blockchain">
+		<meta name="author" content="Maximillian Laumeister">
+		<link rel="author" href="https://plus.google.com/100865127821381452608/posts" />
+		<link rel="stylesheet" type="text/css" href="jquery.nouislider.custom.css">
+		<link rel="stylesheet" type="text/css" href="engine.css">
+		<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="ie.css">
+		<![endif]-->
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<!-- <script src="//cdn.pubnub.com/pubnub.min.js"></script> -->
+		<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+		<script src="bitlisten.min.js" type="text/javascript"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-24440376-9', 'bitlisten.com');
+	  ga('send', 'pageview');
+
+	</script>
+	</head>
+	<body>
+		<div id="header" class="serif interface">
+			<div id="rateBox">
+				<span id="rate">---</span> <span id="units">USD / BTC</span><br />
+				<span class="rateButton" id="bitstampRate" onclick="switchExchange('bitstamp');">Bitstamp</span>
+			</div>
+			<img src="images/logo.png" alt="BitListen">
+			<div id="headerInfo">
+				<p>
+					Realtime Bitcoin transaction visualizer. (Formerly 'Listen To Bitcoin').
+				</p>
+				<p>
+					Most donations get highlighted: <span id="donationAddress" qrtarget="bitcoin:1istendqWJ1mKvrdRUQZDL2F3tVDDyKdj">1istendqWJ1mKvrdRUQZDL2F3tVDDyKdj</span>
+					<br />
+					<span id="musicianDonation"></span>
+				</p>
+				<p class="subdued">
+					By Maximillian Laumeister &bull; Email: max.laumeister at gmail.com
+				</p>
+			</div>
+		</div>
+		<table id="pageSplitter" border="0">
+			<tr><td id="chartCell">
+			<div  id="chartElement" class="contentPanel" style="position: relative;">
+			    <div id="chartHolder"></div>
+				<div class="chartMask"></div>
+				 <a class="boxclose" id="boxclose" style="text-decoration: none;" onclick='hideChart();'>&times;</a>
+			</div>
+			</td>
+			<td>
+			<div id="pageDiv" class="contentPanel">
+				<div id="bubbleDiv"></div>
+				<div id="overlay">
+					<div id="connectionStatus" class="monospace">
+						<div id="connectionInnerDiv" class="interface">
+							<p>
+								<label>
+									<input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'>
+									<span id="blockchainStatus"></span></label>
+							</p>
+						</div>
+					</div>
+					<div id="volumeWrapper" class="interface">
+						<div id="volumeControl"></div>
+						<div id="volumeSlider" class="noUiSlider"></div>
+					</div>
+					<div id="soundControls" class="interface">
+						<div id="scalePitch" class="monospace">
+							<p>Select Instrument:
+							<select onchange="Sound.change(parseInt($(this).val(), 10));">
+								<option value="0">Celesta</option>
+								<option value="1">Planet</option>
+								<option value="2">Wikki</option>
+							</select>
+							</p>
+							<br />
+							<p>
+								<label>
+									<input id="scalePitchCheckBox" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
+									Scale pitch with transaction amount<br />(bigger transaction = deeper sound)</label>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</td>
+			</tr>
+		</table>
+		<div id="hideInterface" class="serif" onclick='toggleInterface()'>[ Hide Interface ]</div>
+		<div id="noJavascript">
+			<p>
+				Please enable Javascript, or try a different web browser.
+			</p>
+		</div>
+		<div id="noInternetExplorer" onclick>
+			<p>
+				Sorry, <span style="color: yellow;">no support for Internet Explorer.</span>
+			</p>
+			<p>
+				Try <a href="https://www.google.com/chrome/" target="_blank">Chrome</a>, <a href="http://www.getfirefox.com" target="_blank">Firefox</a> or Safari.
+			</p>
+			<br />
+			<p class="clickSuppress" style="font-size: 0.5em;">
+				<span style="cursor: pointer; text-decoration: underline;"> (Click Here to Suppress this warning.) </span>
+			</p>
+		</div>
+	</body>
+</html>

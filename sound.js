@@ -2,7 +2,7 @@ var globalVolume = 50;
 var globalScalePitch;
 var globalBank;
 //init volume at 50%
-Howler.volume (globalVolume*.01);
+Howler.volume(globalVolume * 0.01);
 
 function Sound() {
 
@@ -24,25 +24,25 @@ Sound.loadup = function(){
 	var istring;
 
 	// sound0 = celesta
-	sound0 = new Array(); 
+	sound0 = []; 
 
     // sound1 = planet
-	sound1 = new Array(); 
+	sound1 = []; 
 
     // sound2 = celestaB
-	sound2 = new Array(); 
+	sound2 = []; 
 
 	// String swells0, for blocks
-	swells0 = new Array();
+	swells0 = [];
 	
 	// String swells1, for blocks
-	swells1 = new Array();
+	swells1 = [];
 
     // String swells2, for blocks
-	swells2 = new Array();
+	swells2 = [];
 	
 	// These variables are populated (and their sounds loaded) by the Sound.change function below.
-}
+};
 
 
 
@@ -64,28 +64,31 @@ Sound.init = function() {
     
 	// Initialize sound slider
 	$("#volumeSlider").noUiSlider({
-		range : [0, 100],
+		range : {
+			'min': 0,
+			'max': 100
+		},
 		start : 50,
 		handles : 1,
 		step : 1,
-		orientation : "vertical",
-		slide : function() {
+		orientation : "vertical"
+	}).on('slide', function() {
 			globalVolume = 100 - $(this).val();
-			Howler.volume (globalVolume*.01);
-		}
+			Howler.volume(globalVolume * 0.01);
 	});
 	
 	globalScalePitch = $("#scalePitchCheckBox").attr("checked");
 	Sound.change(0);
-}
+};
 
 Sound.change = function(instrument_number) {
-    var musicianString = "Donate to instrument creator: ";
+	var musicianString = "Donate to instrument creator: ";
+	var i;
 	// INSTRUMENT 0
-	if (instrument_number == 0 ) {
+	if (instrument_number === 0 ) {
 		// Load sound and swells if not already loaded
-		if (sound0.length == 0) {
-			for (var i = 1; i <= 22; i++) {
+		if (sound0.length === 0) {
+			for (i = 1; i <= 22; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
 						urls: ["sounds/celesta/" + "celesta" + istring + ".ogg",
@@ -95,8 +98,8 @@ Sound.change = function(instrument_number) {
 				sound0.push(newSound);
 			}
 		}
-		if (swells0.length == 0) {
-			for (var i = 1; i <= 3; i++) {
+		if (swells0.length === 0) {
+			for (i = 1; i <= 3; i++) {
 				newSound = new Howl({
 					urls: ["sounds/swells0/swell" + i +".ogg",
 							"sounds/swells0/swell" + i +".mp3"],
@@ -110,10 +113,10 @@ Sound.change = function(instrument_number) {
 		$('#musicianDonation').text("");
 	}
 	// INSTRUMENT 1
-	else if (instrument_number == 1) {
+	else if (instrument_number === 1) {
 	    // Load sound and swells if not already loaded
-		if (sound1.length == 0) {
-			for (var i = 1; i <= 33; i++) {
+		if (sound1.length === 0) {
+			for (i = 1; i <= 33; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
 						urls: ["sounds/planet/" + "planet" + istring + ".ogg",
@@ -123,8 +126,8 @@ Sound.change = function(instrument_number) {
 				sound1.push(newSound);
 			}
 		}
-        if (swells1.length == 0) {
-			for (var i = 1; i <= 3; i++) {
+        if (swells1.length === 0) {
+			for (i = 1; i <= 3; i++) {
 				newSound = new Howl({
 					urls: ["sounds/swells1/planetswell" + i +".ogg",
 							"sounds/swells1/planetswell" + i +".mp3"],
@@ -139,10 +142,10 @@ Sound.change = function(instrument_number) {
 		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");
 	}
     // INSTRUMENT 2
-	else if (instrument_number == 2) {
+	else if (instrument_number === 2) {
 		// Load sound and swells if not already loaded
-		if (sound2.length == 0) {
-			for (var i = 1; i <= 13; i++) {
+		if (sound2.length === 0) {
+			for (i = 1; i <= 13; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
 						urls: ["sounds/wikki/" + "wikki" + istring + ".ogg",
@@ -152,8 +155,8 @@ Sound.change = function(instrument_number) {
 				sound2.push(newSound);
 			}
 		}
-		if (swells2.length == 0) {
-			for (var i = 1; i <= 3; i++) {
+		if (swells2.length === 0) {
+			for (i = 1; i <= 3; i++) {
 				newSound = new Howl({
 					urls: ["sounds/swells2/wikkiswell" + i +".ogg",
 							"sounds/swells2/wikkiswell" + i +".mp3"],
@@ -167,7 +170,7 @@ Sound.change = function(instrument_number) {
 		SOUND_DONATION_ADDRESS = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
 		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");
 		}
-}
+};
 
 var currentNotes = 0;
 var noteTimeout = 500;
@@ -177,8 +180,8 @@ Sound.playRandomAtVolume = function(volume) {
 		return;
 		
 	var randomPitch = Math.floor(Math.random() * 100);
-	this.playPitchAtVolume(volume, randomPitch);
-}
+	Sound.playPitchAtVolume(volume, randomPitch);
+};
 
 Sound.playPitchAtVolume = function(volume, pitch) {
 	if (globalMute)
@@ -190,7 +193,7 @@ Sound.playPitchAtVolume = function(volume, pitch) {
 	// Here we fuzz the index a bit to prevent the same sound
 	// from being heard over and over again, which gets annoying
 	var fuzz = Math.floor(Math.random() * 4) - 2;
-	index += fuzz
+	index += fuzz;
 	index = Math.min(currentSound.length - 1, index);
 	index = Math.max(0, index);
 	
@@ -207,7 +210,7 @@ Sound.playPitchAtVolume = function(volume, pitch) {
 			currentNotes--;
 		}, noteTimeout);
 	}
-}
+};
 
 var lastBlockSound = -1;
 Sound.playRandomSwell = function() {
@@ -224,4 +227,4 @@ Sound.playRandomSwell = function() {
 	//var readyState = this.swells[randomIndex].get("readyState");
 	//if (readyState >= 2)
 	currentSwells[randomIndex].play();
-}
+};

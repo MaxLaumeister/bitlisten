@@ -1,0 +1,327 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+body {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	overflow: hidden;
+}
+
+img {
+	border-style: none;
+}
+
+a {
+	color: white;
+    text-decoration: underline;
+}
+
+#pageDiv {
+	background-color: black;
+	background-image: url('images/background.jpg');
+	font-family: "Times New Roman", Times, serif;
+	position: relative;
+}
+
+.interface {
+	position: relative;	
+	z-index: 1;
+}
+
+#overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#bubbleDiv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+#pageSplitter {
+	position: relative;
+	height: 500px;
+	width: 100%;
+}
+
+#pageSplitter td{
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+}
+
+.contentPanel {
+    height: 100%;
+	overflow: hidden;
+}
+
+#bitcoinChart {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.chartMask {
+	visibility: hidden;
+    position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.innerDiv {
+	text-align: center;
+	color: white;
+	width: inherit;
+	position: absolute;
+}
+
+.floatableDiv {
+	position: absolute;
+}
+
+.fauxLink {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.subdued {
+	color: gray;
+}
+
+.subdued a {
+	color: inherit;
+}
+
+#connectionStatus {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#connectionInnerDiv {
+	position: absolute;
+	color: white;
+	bottom: 0;
+	left: 0;
+	margin: 2em;
+	width: 33em;
+}
+
+#header {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	color: white;
+	width: 100%;
+	text-align: center;
+	background-color: black;
+	padding: 10px;
+}
+
+#donationAddress {
+	color: yellow;
+}
+
+#rateBox {
+	position: absolute;
+	text-align: left;
+	bottom: 10px;
+	left: 2em;
+	line-height: 1;
+}
+
+#rate {
+	font-size: 50px;
+	color: white;
+}
+
+.rateButton {
+	cursor: pointer;
+}
+
+#units {
+	color: gray;
+}
+
+#headerInfo {
+	margin-top: 10px;
+	line-height: 20px;
+}
+
+#header img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#volumeWrapper {
+	position: absolute;
+	bottom: 120px;	right: 0;
+	margin: 2em;
+}
+
+#volumeControl {
+	background: url('images/sound.png') right;
+	background-position: 0 -46px;
+	cursor: pointer;
+	width: 50px;
+	height: 46px;
+	opacity: 0.5;
+}
+
+#volumeControl:hover {
+	opacity: 1;
+}
+
+#volumeSlider {
+	position: absolute;
+	height: 100px;
+	bottom: 66px;
+	display: block;
+	right: 20px;
+}
+
+#soundControls {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 2em;
+	color: white;
+}
+
+#hideInterface {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 10px;
+	z-index: 1;
+	color: white;
+	cursor: pointer;
+	transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s; /* Firefox 4 */
+	-webkit-transition: opacity 0.5s; /* Safari and Chrome */
+	-o-transition: opacity 0.5s; /* Opera */
+}
+
+#noJavascript {
+	color: white;
+	position: absolute;
+	height: 5em;
+	width: 25em;
+	line-height: 5em;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: solid white 1px;
+	left: 50%;
+	top: 50%;
+	margin: -2.5em 0 0 -12.5em;
+	font-size: 2em;
+}
+
+#noInternetExplorer {
+	padding: 0.5em;
+	color: white;
+	position: absolute;
+	height: 5em;
+	width: 25em;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: solid white 1px;
+	left: 50%;
+	top: 50%;
+	margin: -2.75em 0 0 -13em;
+	font-size: 2em;
+	display: none;
+}
+
+#unauthorizedDomain{
+	padding: 0.5em;
+	color: white;
+	position: absolute;
+	height: 11em;
+	width: 45em;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: solid white 1px;
+	left: 50%;
+	top: 50%;
+	margin: -5.5em 0 0 -22.5em;
+	display: none;
+}
+
+#musicianDonation span{
+    color: green;
+    text-decoration: none
+}
+
+a.boxclose{
+    position: absolute;
+	top: 0;
+	right: 0;
+    cursor:pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    background: #605F61;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;       
+}
+
+.box h1{
+    border-bottom: 1px dashed #7F7F7F;
+    margin:-20px -20px 0px -20px;
+    padding:10px;
+    background-color:#FFEFEF;
+    color:#EF7777;
+}
+
+#showChart {
+	padding-left: 2em;
+	padding-top: 10px;
+	color: white;
+}
+
+#showChartButton {
+	cursor: pointer;
+}
+
+#chartElement {
+	display: none;
+}
+
+#chartHolder {
+	width: 100%;
+	height: 100%;
+}
+
+#chartCell {
+	display: none;
+	width: 50%;
+}
+    
+.serif {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.monospace {
+	font-family: "Courier New", Courier, monospace;
+}
+
