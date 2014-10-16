@@ -6,12 +6,12 @@ Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear
 
 ### Building ###
 
-The project is built and ready-to-go in the dist folder. If you change any of the javascript, you will need to re-build the dist/bitlisten.min.js file:
+The project is built and ready-to-go in the dist folder. If you change any of the javascript, you will need to re-build the `dist/bitlisten.min.js` file:
 
-1. Download the [latest Google Closure Compiler .jar](http://dl.google.com/closure-compiler/compiler-latest.zip) and copy it into the root project folder.
+1. Download the [latest Google Closure Compiler](http://dl.google.com/closure-compiler/compiler-latest.zip) and copy `compiler.jar` into the root project folder.
 2. Run make.bat (Windows) or make.sh (Mac/Linux) to invoke closure compiler with the necessary arguments.
 
-The compiled/minified script will be output to dist/bitlisten.min.js.
+The compiled/minified script will be output to `dist/bitlisten.min.js`.
 
 ### APIs and Libraries ###
 
