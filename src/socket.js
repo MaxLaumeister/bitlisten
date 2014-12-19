@@ -15,7 +15,7 @@ TransactionSocket.init = function() {
 		TransactionSocket.connection.close();
 
 	if ('WebSocket' in window) {
-		var connection = new ReconnectingWebSocket('ws://ws.blockchain.info/inv');
+		var connection = new ReconnectingWebSocket('wss://ws.blockchain.info/inv');
 		TransactionSocket.connection = connection;
 
 		StatusBox.reconnecting("blockchain");
