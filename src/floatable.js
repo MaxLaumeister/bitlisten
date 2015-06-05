@@ -110,7 +110,7 @@ var easterSuccess = function() {
 		Floatable.prototype.update.call(derpy, time);
 		derpy.velocity.x += Math.random() * 0.3 - 0.15;
 		if (derpy.velocity.x > 0.1) {
-			$(derpy.div).css({
+			$(derpy.image).css({
 				"-moz-transform": "scaleX(-1)",
 				"-o-transform": "scaleX(-1)",
 				"-webkit-transform": "scaleX(-1)",
@@ -118,7 +118,7 @@ var easterSuccess = function() {
 			});
 		}
 		if (derpy.velocity.x < -0.1) {
-			$(derpy.div).css({
+			$(derpy.image).css({
 				"-moz-transform": "scaleX(1)",
 				"-o-transform": "scaleX(1)",
 				"-webkit-transform": "scaleX(1)",
