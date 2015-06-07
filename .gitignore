@@ -1,10 +1,6 @@
-# Closure Compiler #
-####################
-
-compiler.jar
-
 # OS generated files #
 ######################
+
 .DS_Store
 .DS_Store?
 ._*
@@ -12,3 +8,11 @@ compiler.jar
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Grunt #
+#########
+
+node_modules
+.npm-debug.log
+tmp
+
