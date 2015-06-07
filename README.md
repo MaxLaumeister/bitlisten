@@ -1,5 +1,7 @@
 ## BitListen - Bitcoin Transaction Visualizer ##
 
+[![Build Status](https://travis-ci.org/MaxLaumeister/maxlaumeister.github.io.svg?branch=master)](https://travis-ci.org/MaxLaumeister/bitlisten)
+
 Current version hosted at [**BitListen.com**](http://bitlisten.com/). Project formerly known as "Listen to Bitcoin" (ListenToBitcoin.com has been sold.)
 
 Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear new transactions and blocks as they propagate through the Bitcoin Network.
