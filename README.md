@@ -29,7 +29,7 @@ BitListen uses these libraries:
 
 BitListen uses these APIs:
 
-* [Blockchain.info](http://blockchain.info/) WebSocket API (For Transactions)
+* [Toshi.io](https://toshi.io/docs/) WebSocket API (For Transactions)
 * [Bitstamp.net](https://www.bitstamp.net/) WebSocket API (For Price Ticker)
 
 ### License ###
