@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   var srcFiles = ['src/*.js'];
   var libFiles = ['lib/*.js'];
-  var destFile = 'dist/bitlisten.min.js';
+  var destFile = 'bitlisten.min.js';
 
   // Project configuration.
   grunt.initConfig({
@@ -12,7 +12,6 @@ module.exports = function(grunt) {
     connect: {
       all: {
         options: {
-          base: 'dist',
           port: 8000,
           keepalive: true
         }
