@@ -11,10 +11,14 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 
 		this.addImage(bubbleImage, this.width, this.height);
 	
-		var bitcoinString = "&#3647;" + bitcoins.toFixed(2);
-	
-		if (bitcoinString == "&#3647;0.00")
-		bitcoinString = "<&#3647;0.01";
+	    var bitcoinVal = bitcoins.toFixed(2);
+	    var bitcoinString;
+	    
+	    if (bitcoinVal === "0.00") {
+	        bitcoinString = "&lt;<span class='bitcoinsymbol'>B</span>0.01";
+	    } else {
+	        bitcoinString = "<span class='bitcoinsymbol'>B</span>" + bitcoinVal;
+	    }
 	
 		if (!highlight) {
 			this.addText(bitcoinString);
