@@ -1,5 +1,5 @@
 var satoshi = 100000000;
-var DELAY_CAP = 5000;
+var DELAY_CAP = 20000;
 var lastBlockHeight = 0;
 
 var provider_name = "blockchain.info";
