@@ -54,6 +54,12 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	    } else {
 		    Sound.playRandomAtVolume(volume);
 	    }
+	    
+	    transaction_count++;
+	    
+	    if (transaction_count === 5) {
+	        document.getElementById("waitingForTransactions").style.opacity = "0";
+	    }
 		
 	}
 

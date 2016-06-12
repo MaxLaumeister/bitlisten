@@ -14,6 +14,8 @@ var last_update = 0;
 
 var updateTargets = [];
 
+var transaction_count = 0;
+
 // Preload images
 var bubbleImage = new Image();
 bubbleImage.src = "images/bubble.png";

@@ -74,9 +74,13 @@ TransactionSocket.init = function() {
 					}
 				}
 
-				setTimeout(function() {
-					new Transaction(bitcoins);
-				}, Math.random() * DELAY_CAP);
+                if (transaction_count === 0) {
+                    new Transaction(bitcoins);
+                } else {
+				    setTimeout(function() {
+					    new Transaction(bitcoins);
+				    }, Math.random() * DELAY_CAP);
+				}
 
 			} else if (data.op == "block") {
 				var blockHeight = data.x.height;
