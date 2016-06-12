@@ -3,23 +3,8 @@ var currentExchange;
 var ratebox_ms = 3000; // 3 second update interval
 
 rateboxGetRate = function() {
-	if (currentExchange == "bitstamp") {
-		// Thanks to nyg for this trick - https://github.com/nyg/bitstamp-ticker/blob/master/bitstamp.js
-		var api_url = 'https://www.bitstamp.net/api/ticker/';
-		var yql_url = '//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D"' + encodeURIComponent(api_url) + '"&format=json&callback=?';
-		
-        $.getJSON(yql_url, function (json) {
-          var ticker = $.parseJSON(json.query.results.body);
-          if (ticker) {
-            $("#rate").html(parseFloat(ticker.last).toFixed(2));
-          } else {
-            rateboxTimeout = setTimeout(rateboxGetRate, ratebox_ms);
-          }
-        });
-      
-	} else {
-		throw "Unrecognized Exchange";
-	}
+	// After some testing, the YQL proxy turns out not to be very reliable.
+	// Instead of that, we will just wait for the BitStamp websocket to update.
 };
 
 $(document).ready(function() {
