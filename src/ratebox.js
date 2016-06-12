@@ -6,10 +6,10 @@ rateboxGetRate = function() {
 	if (currentExchange == "bitstamp") {
 		// Thanks to nyg for this trick - https://github.com/nyg/bitstamp-ticker/blob/master/bitstamp.js
 		var api_url = 'https://www.bitstamp.net/api/ticker/';
-		var yql_url = '//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D"' + api_url + '"&format=json&callback=?';
+		var yql_url = '//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D"' + encodeURIComponent(api_url) + '"&format=json&callback=?';
 		
-        $.getJSON(yql_url, function (jsonp) {
-          var ticker = $.parseJSON(jsonp.query.results.body.p);
+        $.getJSON(yql_url, function (json) {
+          var ticker = $.parseJSON(json.query.results.body);
           if (ticker) {
             $("#rate").html(parseFloat(ticker.last).toFixed(2));
           } else {
