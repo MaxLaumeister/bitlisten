@@ -17,11 +17,13 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	    if (bitcoinVal === "0.00") {
 	        bitcoinString = "&lt;<span class='bitcoinsymbol'>B</span>0.01";
 	    } else {
-	    	if(globalShowDollar) {
-	        	bitcoinString = "<span class='bitcoinsymbol'>B</span>" + bitcoinVal;
-	    	} else {
+	    	if(globalShowDollar === true) {
 	    		bitcoinString = "$" + (bitcoinVal*globalRate).toFixed(0);
+	    	} else {
+	    		bitcoinString = "<span class='bitcoinsymbol'>B</span>" + bitcoinVal;
 	    	}
+
+	    	globalCounter+=bitcoinVal;
 	    }
 	
 		if (!highlight) {
