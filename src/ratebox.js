@@ -1,7 +1,7 @@
 var rateboxTimeout;
 var currentExchange;
 var ratebox_ms = 3000; // 3 second update interval
-var globalRate = 1100; // standard set to 1100
+var globalRate = -1; // set upon first rate received
 
 rateboxGetRate = function() {
 	// After some testing, the YQL proxy turns out not to be very reliable.
@@ -13,7 +13,12 @@ $(document).ready(function() {
 	var pusher = new Pusher('de504dc5763aeef9ff52');
 	var channel = pusher.subscribe('live_trades');
 	channel.bind('trade', function(ticker) {
-        $("#rate").html(parseFloat(ticker.price).toFixed(2));
+	    if (globalRate === -1) {
+	        var checkbox = $("#showDollarCheckBox");
+	        checkbox.prop("disabled", false);
+	        checkbox.parent().removeClass("disabled");
+	    }
+	    $("#rate").html(parseFloat(ticker.price).toFixed(2));
         if (rateboxTimeout) clearTimeout(rateboxTimeout);
         globalRate = parseFloat(ticker.price).toFixed(2);
 	});
