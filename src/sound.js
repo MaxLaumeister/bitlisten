@@ -1,6 +1,7 @@
 var globalVolume = 50;
 var globalScalePitch;
 var globalBank;
+var globalShowDollar = false;
 //init volume at 50%
 Howler.volume(globalVolume * 0.01);
 

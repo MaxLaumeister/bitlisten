@@ -4,6 +4,8 @@ var lastBlockHeight = 0;
 
 var provider_name = "blockchain.info";
 
+var transactionSocketDelay = 1000;
+
 /** @constructor */
 function TransactionSocket() {
 
@@ -50,7 +52,15 @@ TransactionSocket.init = function() {
 		};
 
 		connection.onmessage = function(e) {
+			
 			var data = JSON.parse(e.data);
+			
+			if (data.op == "no_data") {
+			    TransactionSocket.close();
+			    setTimeout(TransactionSocket.init, transactionSocketDelay);
+			    transactionSocketDelay *= 2;
+			    console.log("connection borked, reconnecting");
+			}
 
 			// New Transaction
 			if (data.op == "utx") {
@@ -105,6 +115,6 @@ TransactionSocket.init = function() {
 
 TransactionSocket.close = function() {
 	if (TransactionSocket.connection)
-		TransactionSocket.connection.disconnect();
+		TransactionSocket.connection.close();
 	StatusBox.closed("blockchain");
 };

@@ -30,7 +30,8 @@
 	          "sameAs": [
 	              "https://en.wikipedia.org/wiki/BitListen",
 	              "https://www.wikidata.org/wiki/Q25990592",
-	              "https://www.maxlaumeister.com/projects/bitlisten/"
+	              "https://www.maxlaumeister.com/projects/bitlisten/",
+	              "https://github.com/MaxLaumeister/bitlisten"
 	          ],
 	          "author": {
 	              "@type" : "Person",
@@ -115,9 +116,17 @@
 							<p>
 								<label>
 									<input id="scalePitchCheckBox" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
-									Scale pitch with transaction amount<br />(bigger transaction = deeper sound)</label>
+										Scale pitch with transaction amount<br />(bigger transaction = deeper sound)
+								</label>
+							</p>
+							<p>
+								<label class="disabled">
+								    <input id="showDollarCheckBox" type='checkbox' onchange='globalShowDollar = this.checked' disabled="disabled">
+									Show units in USD instead of BTC
+								</label>
 							</p>
 						</div>
+
 					</div>
 				</div>
 		        <span id="waitingForTransactions">

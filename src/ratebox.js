@@ -1,20 +1,32 @@
 var rateboxTimeout;
 var currentExchange;
 var ratebox_ms = 3000; // 3 second update interval
+var globalRate = -1; // set upon first rate received
+
+function setGlobalRate(rate) {
+    if (globalRate === -1) {
+        var checkbox = $("#showDollarCheckBox");
+        checkbox.prop("disabled", false);
+        checkbox.parent().removeClass("disabled");
+    }
+    $("#rate").html(parseFloat(rate).toFixed(2));
+    globalRate = rate;
+}
 
 rateboxGetRate = function() {
-	// After some testing, the YQL proxy turns out not to be very reliable.
-	// Instead of that, we will just wait for the BitStamp websocket to update.
+	$.getJSON("https://blockchain.info/ticker?cors=true", function(data) {
+        setGlobalRate(data.USD.last);
+    });
 };
 
 $(document).ready(function() {
 	// Bitstamp websocket API
-	var pusher = new Pusher('de504dc5763aeef9ff52');
-	var channel = pusher.subscribe('live_trades');
-	channel.bind('trade', function(ticker) {
-        $("#rate").html(parseFloat(ticker.price).toFixed(2));
+    var pusher = new Pusher('de504dc5763aeef9ff52');
+    var channel = pusher.subscribe('live_trades');
+    channel.bind('trade', function(ticker) {
+        setGlobalRate(ticker.price);
         if (rateboxTimeout) clearTimeout(rateboxTimeout);
-	});
+    });
 });
 
 switchExchange = function(exchangeName) {

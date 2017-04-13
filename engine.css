@@ -218,6 +218,10 @@ a {
 	color: white;
 }
 
+#soundControls p {
+    margin: 0.5em 0;
+}
+
 #hideInterface {
 	position: absolute;
 	right: 0;
@@ -352,5 +356,9 @@ a.boxclose{
     -ms-user-select: none; /* IE10+ */
     -o-user-select: none;
     user-select: none;
+}
+
+.disabled {
+    color: #666666;
 }
 

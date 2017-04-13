@@ -6,7 +6,7 @@ Realtime Bitcoin transaction visualizer written in HTML/Javascript. See and hear
 
 ### Building ###
 
-The project is built and ready-to-go in the dist folder. If you change any of the javascript, you will need to re-build the `bitlisten.min.js` file using Grunt. If you haven't used Grunt before, here is a short tutorial:
+The project is built and ready-to-go. If you change any of the javascript, you will need to re-build the `bitlisten.min.js` file using Grunt. If you haven't used Grunt before, here is a short tutorial:
 
 1. [Install Node.js](https://nodejs.org/download/).
 
@@ -27,7 +27,7 @@ BitListen uses these libraries:
 
 BitListen uses these APIs:
 
-* [Toshi.io](https://toshi.io/docs/) WebSocket API (For Transactions)
+* [Blockchain.info](https://blockchain.info/) WebSocket API (For Transactions)
 * [Bitstamp.net](https://www.bitstamp.net/) WebSocket API (For Price Ticker)
 
 ### License ###
