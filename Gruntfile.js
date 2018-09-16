@@ -33,14 +33,6 @@ module.exports = function(grunt) {
         src: srcFiles.concat(['Gruntfile.js'])
       }
     },
-    todos: {
-      all: {
-        options: {
-          verbose: false
-        },
-        src: srcFiles
-      }
-    },
     watch: {
       all: {
         files: srcFiles.concat(['Gruntfile.js']),
@@ -57,7 +49,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-newer');
-  grunt.loadNpmTasks('grunt-todos');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.registerTask('default', ['jshint', 'uglify']);
