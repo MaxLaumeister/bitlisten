@@ -14,6 +14,7 @@ var soundBank = [];
 	soundBank[0] = ["celesta", 22];
 	soundBank[1] = ["planet", 33];
 	soundBank[2] = ["wikki", 13];
+	soundBank[3] = ["andes", 30];
 
 function zeroPad(num, places) {
 	var zero = places - num.toString().length + 1;
@@ -31,7 +32,10 @@ Sound.loadup = function(){
 	sound1 = []; 
 
     // sound2 = celestaB
-	sound2 = []; 
+	sound2 = [];
+
+    // sound3 = andes
+	sound3 = []; 
 
 	// String swells0, for blocks
 	swells0 = [];
@@ -39,9 +43,12 @@ Sound.loadup = function(){
 	// String swells1, for blocks
 	swells1 = [];
 
-    // String swells2, for blocks
+    // String swells, for blocks
 	swells2 = [];
 	
+    // String swells, for blocks
+	swells3 = [];
+
 	// These variables are populated (and their sounds loaded) by the Sound.change function below.
 };
 
@@ -171,6 +178,34 @@ Sound.change = function(instrument_number) {
 		SOUND_DONATION_ADDRESS = "1JFaYRGkDmhpSTbFKwqDWKr2ncvvrgYEAV";
 		$('#musicianDonation').html(musicianString + "<span>" + SOUND_DONATION_ADDRESS + "</span>");
 		}
+	// INSTRUMENT 3
+	if (instrument_number === 3 ) {
+		// Load sound and swells if not already loaded
+		if (sound3.length === 0) {
+			for (i = 1; i <= 30; i++) {
+				istring = zeroPad(i, 3);
+				newSound = new Howl({
+						urls: ["sounds/andes/" + "andes" + istring + ".ogg",
+							   "sounds/andes/" + "andes" + istring + ".mp3"],
+						autoplay: false
+				});
+				sound3.push(newSound);
+			}
+		}
+		if (swells3.length === 0) {
+			for (i = 1; i <= 3; i++) {
+				newSound = new Howl({
+					urls: ["sounds/swells3/swell" + i +".ogg",
+							"sounds/swells3/swell" + i +".mp3"],
+					autoplay: false
+				});
+				swells3.push(newSound);
+			}
+		}
+		currentSound = sound3;
+		currentSwells = swells3;
+		$('#musicianDonation').text("");
+	}
 };
 
 var currentNotes = 0;
