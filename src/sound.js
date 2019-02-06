@@ -2,8 +2,15 @@ var globalVolume = 50;
 var globalScalePitch;
 var globalBank;
 var globalShowDollar = false;
+var globalAudioUnlocked = false;
 //init volume at 50%
 Howler.volume(globalVolume * 0.01);
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    document.body.addEventListener('click', function() {
+        document.getElementById("waitingForTransactions").style.opacity = "0";
+    }, true);
+});
 
 function Sound() {
 
@@ -89,20 +96,30 @@ Sound.change = function(instrument_number) {
 	if (instrument_number === 0 ) {
 		// Load sound and swells if not already loaded
 		if (sound0.length === 0) {
+            var once = true;
 			for (i = 1; i <= 22; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
-						urls: ["sounds/celesta/" + "celesta" + istring + ".ogg",
+						src: ["sounds/celesta/" + "celesta" + istring + ".ogg",
 							   "sounds/celesta/" + "celesta" + istring + ".mp3"],
 						autoplay: false
 				});
+                if (once) {
+                    once = false;
+                    // This whole app direly needs to be rewritten, for now it's duct tape
+                    /* jshint ignore:start */
+                    newSound.once('unlock', function() {
+                        globalAudioUnlocked = true;
+                    });
+                    /* jshint ignore:end */
+                }
 				sound0.push(newSound);
 			}
 		}
 		if (swells0.length === 0) {
 			for (i = 1; i <= 3; i++) {
 				newSound = new Howl({
-					urls: ["sounds/swells0/swell" + i +".ogg",
+					src: ["sounds/swells0/swell" + i +".ogg",
 							"sounds/swells0/swell" + i +".mp3"],
 					autoplay: false
 				});
@@ -120,7 +137,7 @@ Sound.change = function(instrument_number) {
 			for (i = 1; i <= 33; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
-						urls: ["sounds/planet/" + "planet" + istring + ".ogg",
+						src: ["sounds/planet/" + "planet" + istring + ".ogg",
 							   "sounds/planet/" + "planet" + istring + ".mp3"],
 						autoplay: false
 				});
@@ -149,7 +166,7 @@ Sound.change = function(instrument_number) {
 			for (i = 1; i <= 13; i++) {
 				istring = zeroPad(i, 3);
 				newSound = new Howl({
-						urls: ["sounds/wikki/" + "wikki" + istring + ".ogg",
+						src: ["sounds/wikki/" + "wikki" + istring + ".ogg",
 							   "sounds/wikki/" + "wikki" + istring + ".mp3"],
 						autoplay: false
 				});
@@ -159,7 +176,7 @@ Sound.change = function(instrument_number) {
 		if (swells2.length === 0) {
 			for (i = 1; i <= 3; i++) {
 				newSound = new Howl({
-					urls: ["sounds/swells2/wikkiswell" + i +".ogg",
+					src: ["sounds/swells2/wikkiswell" + i +".ogg",
 							"sounds/swells2/wikkiswell" + i +".mp3"],
 					autoplay: false
 				});
@@ -205,7 +222,7 @@ Sound.playPitchAtVolume = function(volume, pitch) {
 	//var readyState = currentSound[index].get("readyState");
 	if (currentNotes < 5) {
                 currentSound[index].volume(volume);
-		currentSound[index].play();
+        if (globalAudioUnlocked) currentSound[index].play();
 		currentNotes++;
 		setTimeout(function() {
 			currentNotes--;
@@ -227,5 +244,5 @@ Sound.playRandomSwell = function() {
 
 	//var readyState = this.swells[randomIndex].get("readyState");
 	//if (readyState >= 2)
-	currentSwells[randomIndex].play();
+    if (globalAudioUnlocked) currentSwells[randomIndex].play();
 };

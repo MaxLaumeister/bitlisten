@@ -14,10 +14,10 @@ function Block(height, numTransactions, outputTotal, blockSize) {
 		this.addImage(blockImage, this.width, this.height);
 		this.addText("Block #" + height + "<br />Number of Transactions: " + numTransactions + "<br />Transaction Volume: " + outputBTC + "<br />Block Size: " + blockSizeKB);
 		this.initPosition();
-	}
 	
-	// Sound
-	Sound.playRandomSwell();
+        // Sound
+        Sound.playRandomSwell();
+	}
 }
 
 extend(Floatable, Block);

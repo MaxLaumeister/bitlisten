@@ -58,11 +58,6 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	    }
 	    
 	    transaction_count++;
-	    
-	    if (transaction_count === 5) {
-	        document.getElementById("waitingForTransactions").style.opacity = "0";
-	    }
-		
 	}
 
 }
