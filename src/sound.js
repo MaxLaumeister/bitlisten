@@ -65,7 +65,7 @@ Sound.init = function() {
 			$("#volumeControl").css("background-position", "0 0");
 		} else {
 			globalMute = false;
-			Howler.unmute();
+			Howler.mute(false);
 			$("#volumeControl").css("background-position", "0 -46px");
 		}
 	});
