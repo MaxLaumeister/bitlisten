@@ -31,6 +31,9 @@ module.exports = function(grunt) {
     jshint: {
       all: {
         src: srcFiles.concat(['Gruntfile.js'])
+      },
+      options: {
+        'esversion': 6,
       }
     },
     watch: {

@@ -2,7 +2,12 @@
  *  @constructor
  *  @extends Floatable
  */
-const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'});
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
+	minimumFractionDigits: 0,
+	maximumFractionDigits: 0
+});
 
 function Transaction(bitcoins, highlight, currency, currencyName) {
 	if (document.visibilityState === "visible") {
