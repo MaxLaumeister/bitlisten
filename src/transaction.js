@@ -2,6 +2,8 @@
  *  @constructor
  *  @extends Floatable
  */
+const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'});
+
 function Transaction(bitcoins, highlight, currency, currencyName) {
 	if (document.visibilityState === "visible") {
 		Floatable.call(this);
@@ -15,7 +17,7 @@ function Transaction(bitcoins, highlight, currency, currencyName) {
 	    var bitcoinString;
 	    
 	    if(globalShowDollar === true) {
-    		bitcoinString = "$" + (bitcoins*globalRate).toFixed(0);
+		bitcoinString = currencyFormatter.format(bitcoins*globalRate);    
     	} else if (bitcoinVal === "0.00") {
 	        bitcoinString = "&lt;<span class='bitcoinsymbol'>B</span>0.01";
 	    } else {
