@@ -79,7 +79,7 @@ $(document).ready(function() {
 	// Spam the following line into console, it's kind of fun.
 	// new Block(228158, 270, 100 * satoshi, 153 * 1024);
 	
-	switchExchange("bitstamp");
+	switchExchange("coinbase");
 	
 	// Attach mouseover qr
 	$("#donationAddress").qr();
