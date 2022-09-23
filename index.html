@@ -94,7 +94,7 @@
 						<div id="connectionInnerDiv" class="interface">
 							<p>
 								<label>
-									<input id="blockchainCheckBox" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'>
+									<input id="blockchainCheckBox" autocomplete="off" type='checkbox' checked="checked" onchange='this.checked ? TransactionSocket.init() : TransactionSocket.close();'>
 									<span id="blockchainStatus"></span></label>
 							</p>
 						</div>
@@ -115,13 +115,13 @@
 							<br />
 							<p>
 								<label>
-									<input id="scalePitchCheckBox" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
+									<input id="scalePitchCheckBox" autocomplete="off" type='checkbox' checked="checked" onchange='globalScalePitch = this.checked'>
 										Scale pitch with transaction amount<br />(bigger transaction = deeper sound)
 								</label>
 							</p>
 							<p>
 								<label class="disabled">
-								    <input id="showDollarCheckBox" type='checkbox' onchange='globalShowDollar = this.checked' disabled="disabled">
+								    <input id="showDollarCheckBox" autocomplete="off" type='checkbox' onchange='globalShowDollar = this.checked' disabled="disabled">
 									Show units in USD instead of BTC
 								</label>
 							</p>
